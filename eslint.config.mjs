@@ -12,6 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "**/._*", // Ignore macOS resource fork ghost files
   ]),
 ]);
 
