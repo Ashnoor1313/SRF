@@ -33,12 +33,13 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center group relative h-12 w-32 md:h-14 md:w-40 transition-transform group-hover:scale-[1.02]">
+        <Link href="/" className="flex items-center shrink-0">
           <Image
-            src="/Logo.png"
+            src="/logo.png"
             alt="Siya Ram Fabrics Logo"
-            fill
-            className="object-contain object-left"
+            width={122}
+            height={103}
+            className="h-12 md:h-14 w-auto object-contain"
             priority
           />
         </Link>

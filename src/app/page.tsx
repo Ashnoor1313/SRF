@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, Factory, ShieldCheck, Users } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/fade-in";
-
 export default function Home() {
   return (
     <div className="flex flex-col w-full">
@@ -11,7 +10,7 @@ export default function Home() {
       <section className="relative h-[90vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/knitting_machine.png"
+            src="/images/hero-placeholder.svg"
             alt="Modern textile manufacturing"
             fill
             className="object-cover"

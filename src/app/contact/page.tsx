@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/contact-form";
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Us | Siya Ram Fabrics",
@@ -23,47 +23,52 @@ export default function ContactPage() {
             <h3 className="font-heading text-xl font-bold uppercase tracking-wider mb-6">Corporate Office & Manufacturing</h3>
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
-                <div className="bg-muted p-3">
+                <div className="bg-muted p-3 shrink-0">
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <span className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Address</span>
-                  <span className="text-foreground font-medium">Phase 8, Focal Point,<br />Ludhiana, Punjab 141010<br />India</span>
+                  <span className="text-foreground font-medium text-sm leading-relaxed">
+                    A4–A7, Hampton Court Business Park,<br />
+                    Chandigarh Road, Ludhiana – 141008,<br />
+                    Punjab, India
+                  </span>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="bg-muted p-3">
+                <div className="bg-muted p-3 shrink-0">
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <span className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Phone</span>
-                  <span className="text-foreground font-medium">+91 98765 43210<br />+91 161 2345678</span>
+                  <span className="text-foreground font-medium">+91 9888778082</span>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="bg-muted p-3">
+                <div className="bg-muted p-3 shrink-0">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <span className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Email</span>
-                  <span className="text-foreground font-medium">info@siyaramfabrics.com<br />sales@siyaramfabrics.com</span>
+                  <span className="text-foreground font-medium">siyaramfabrics@gmail.com</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <div className="bg-muted p-3 shrink-0">
+                  <Clock className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <span className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Business Hours</span>
+                  <span className="text-foreground font-medium">Monday – Saturday</span>
+                  <span className="block text-foreground/70 text-sm">10:00 AM – 7:00 PM</span>
                 </div>
               </li>
             </ul>
           </div>
-          
-          <div className="p-6 bg-secondary text-white">
-            <h3 className="font-heading text-lg font-bold uppercase tracking-wider mb-3">Business Hours</h3>
-            <div className="space-y-2 text-sm text-white/80">
-              <div className="flex justify-between">
-                <span>Monday - Saturday</span>
-                <span>9:00 AM - 7:00 PM</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Sunday</span>
-                <span>Closed</span>
-              </div>
-            </div>
+
+          <div className="p-6 bg-secondary text-white space-y-3">
+            <p className="text-sm text-white/70">GST Number</p>
+            <p className="font-heading text-lg font-bold tracking-wide">03ABEPJ2089F2ZY</p>
           </div>
         </div>
 

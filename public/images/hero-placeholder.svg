@@ -1,0 +1,21 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1080" fill="#1A1A1A"/>
+  <rect x="0" y="0" width="1920" height="1080" fill="url(#pattern)"/>
+  <defs>
+    <pattern id="pattern" patternUnits="userSpaceOnUse" width="80" height="80" patternTransform="rotate(45)">
+      <rect width="80" height="80" fill="none"/>
+      <rect x="0" y="0" width="2" height="80" fill="white" opacity="0.03"/>
+      <rect x="0" y="0" width="80" height="2" fill="white" opacity="0.03"/>
+    </pattern>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#B12137" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#B12137" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#4E9090" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grad)"/>
+  <circle cx="960" cy="540" r="200" fill="#B12137" opacity="0.06"/>
+  <circle cx="960" cy="540" r="300" fill="#B12137" opacity="0.04"/>
+  <text x="960" y="480" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" font-weight="700" letter-spacing="4" fill="white" opacity="0.15">HERO IMAGE</text>
+  <text x="960" y="540" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="400" letter-spacing="6" fill="white" opacity="0.1">1920 × 1080</text>
+</svg>

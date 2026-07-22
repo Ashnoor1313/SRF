@@ -10,12 +10,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="space-y-6">
-            <Link href="/" className="flex items-center group relative h-14 w-40 inline-flex transition-transform hover:scale-[1.02]">
+            <Link href="/" className="flex items-center transition-transform hover:scale-[1.02] w-fit">
               <Image
-                src="/Logo.png"
+                src="/logo.png"
                 alt="Siya Ram Fabrics Logo"
-                fill
-                className="object-contain object-left brightness-0 invert"
+                width={122}
+                height={103}
+                className="h-14 w-auto object-contain brightness-0 invert"
                 priority
               />
             </Link>
@@ -48,16 +49,19 @@ export default function Footer() {
             <h4 className="font-heading font-semibold uppercase tracking-wider text-sm">Contact Us</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary shrink-0" />
-                <span>Phase 8, Focal Point,<br />Ludhiana, Punjab 141010</span>
+                <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                <span>A4–A7, Hampton Court Business Park,<br />Chandigarh Road, Ludhiana – 141008</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary shrink-0" />
-                <span className="font-numbers">+91 98765 43210</span>
+                <span className="font-numbers">+91 9888778082</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
-                <span>info@siyaramfabrics.com</span>
+                <span>siyaramfabrics@gmail.com</span>
+              </li>
+              <li className="text-xs text-muted-foreground/70">
+                Mon – Sat: 10:00 AM – 7:00 PM
               </li>
             </ul>
           </div>
