@@ -22,6 +22,7 @@ type FormData = z.infer<typeof formSchema>;
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
@@ -35,6 +36,7 @@ export function ContactForm() {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setServerError(null);
 
     try {
       const response = await fetch("/api/contact", {
@@ -50,6 +52,8 @@ export function ContactForm() {
         reset();
       } else {
         setSubmitStatus("error");
+        const body = await response.json().catch(() => null);
+        if (typeof body?.error === "string") setServerError(body.error);
       }
     } catch {
       setSubmitStatus("error");
@@ -59,7 +63,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="bg-background border border-border p-8 md:p-12 shadow-sm">
+    <div className="bg-background border border-border p-8 md:p-12 shadow-lg rounded-2xl">
       <h2 className="font-heading text-3xl font-bold uppercase tracking-tight mb-2">Send an Enquiry</h2>
       <p className="text-muted-foreground mb-8">Fill out the form below and our team will get back to you shortly.</p>
 
@@ -72,7 +76,7 @@ export function ContactForm() {
 
       {submitStatus === "error" && (
         <div className="bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-400 p-4 mb-8 border border-red-200 dark:border-red-800">
-          <p className="font-semibold uppercase tracking-wider text-sm">Something went wrong.</p>
+          <p className="font-semibold uppercase tracking-wider text-sm">{serverError || "Something went wrong."}</p>
           <p className="text-sm mt-1">Please try again or contact us directly via email.</p>
         </div>
       )}
@@ -85,7 +89,7 @@ export function ContactForm() {
               id="name"
               placeholder="John Doe"
               {...register("name")}
-              className={`rounded-none border-border focus-visible:ring-primary ${errors.name ? "border-red-500" : ""}`}
+              className={`rounded-xl border-border focus-visible:ring-primary ${errors.name ? "border-red-500" : ""}`}
             />
             {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
           </div>
@@ -96,7 +100,7 @@ export function ContactForm() {
               type="email"
               placeholder="john@example.com"
               {...register("email")}
-              className={`rounded-none border-border focus-visible:ring-primary ${errors.email ? "border-red-500" : ""}`}
+              className={`rounded-xl border-border focus-visible:ring-primary ${errors.email ? "border-red-500" : ""}`}
             />
             {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
           </div>
@@ -109,7 +113,7 @@ export function ContactForm() {
               id="phone"
               placeholder="+91 98765 43210"
               {...register("phone")}
-              className={`rounded-none border-border focus-visible:ring-primary ${errors.phone ? "border-red-500" : ""}`}
+              className={`rounded-xl border-border focus-visible:ring-primary ${errors.phone ? "border-red-500" : ""}`}
             />
             {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
           </div>
@@ -119,7 +123,7 @@ export function ContactForm() {
               id="company"
               placeholder="Your Company Ltd."
               {...register("company")}
-              className="rounded-none border-border focus-visible:ring-primary"
+              className="rounded-xl border-border focus-visible:ring-primary"
             />
           </div>
         </div>
@@ -131,7 +135,7 @@ export function ContactForm() {
             placeholder="Tell us about your requirements..."
             rows={5}
             {...register("message")}
-            className={`rounded-none border-border focus-visible:ring-primary resize-none ${errors.message ? "border-red-500" : ""}`}
+            className={`rounded-xl border-border focus-visible:ring-primary resize-none ${errors.message ? "border-red-500" : ""}`}
           />
           {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
         </div>
@@ -140,7 +144,7 @@ export function ContactForm() {
           type="submit"
           size="lg"
           disabled={isSubmitting}
-          className="w-full bg-primary hover:bg-primary/90 text-white rounded-none uppercase tracking-widest font-semibold h-14"
+          className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl uppercase tracking-widest font-semibold h-14"
         >
           {isSubmitting ? "Sending..." : "Submit Enquiry"}
         </Button>

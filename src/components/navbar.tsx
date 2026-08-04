@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const NAV_LINKS = [
   { name: "Manufacturing", href: "/manufacturing" },
@@ -16,6 +17,8 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,41 +49,54 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors uppercase tracking-wider"
-            >
-              {link.name}
-            </Link>
-          ))}
-          <Link href="/contact" className={buttonVariants({ className: "uppercase tracking-widest font-semibold" })}>
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`text-sm font-medium transition-colors uppercase tracking-wider ${
+                  isActive ? "text-primary font-semibold" : "text-foreground hover:text-primary"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+          <Link href="/contact" className={buttonVariants({ className: "uppercase tracking-widest font-semibold rounded-full" })}>
             Enquire Now
           </Link>
         </nav>
 
         {/* Mobile Navigation */}
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger className="md:hidden" render={<Button variant="ghost" size="icon" className="text-foreground" />}>
             <Menu className="h-6 w-6" />
             <span className="sr-only">Toggle menu</span>
           </SheetTrigger>
           <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background">
             <nav className="flex flex-col gap-6 mt-12">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-lg font-heading font-semibold text-foreground hover:text-primary transition-colors uppercase tracking-wider"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <SheetClose key={link.name} render={<Link href={link.href} />}>
+                    <span
+                      className={`${
+                        isActive
+                          ? "text-primary font-bold"
+                          : "text-foreground hover:text-primary"
+                      } font-heading text-lg font-semibold uppercase tracking-wider`}
+                    >
+                      {link.name}
+                    </span>
+                  </SheetClose>
+                );
+              })}
               <div className="h-px w-full bg-border my-4" />
-              <Link href="/contact" className={buttonVariants({ className: "bg-primary hover:bg-primary/90 text-white rounded-none uppercase tracking-widest font-semibold w-full" })}>
+              <SheetClose render={<Link href="/contact" className={buttonVariants({ className: "bg-primary hover:bg-primary/90 text-white rounded-full uppercase tracking-widest font-semibold w-full" })} />}>
                 Enquire Now
-              </Link>
+              </SheetClose>
             </nav>
           </SheetContent>
         </Sheet>

@@ -1,10 +1,12 @@
 import { ContactForm } from "@/components/contact-form";
 import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Contact Us | Siya Ram Fabrics",
-  description: "Get in touch with Siya Ram Fabrics for all your knitted fabric manufacturing needs.",
+  description:
+    "Get in touch with Siya Ram Fabrics for all your knitted fabric manufacturing needs. Visit our 1.5 lac sq ft facility in Ludhiana or reach us by phone, email, or WhatsApp.",
 };
 
 export default function ContactPage() {
@@ -23,7 +25,7 @@ export default function ContactPage() {
             <h3 className="font-heading text-xl font-bold uppercase tracking-wider mb-6">Corporate Office & Manufacturing</h3>
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
-                <div className="bg-muted p-3 shrink-0">
+                <div className="bg-muted p-3 shrink-0 rounded-xl">
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
@@ -36,25 +38,29 @@ export default function ContactPage() {
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="bg-muted p-3 shrink-0">
+                <div className="bg-muted p-3 shrink-0 rounded-xl">
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <span className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Phone</span>
-                  <span className="text-foreground font-medium">+91 9888778082</span>
+                  <a href="tel:+919888778082" className="text-foreground font-medium hover:text-primary transition-colors">
+                    +91 98887 78082
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="bg-muted p-3 shrink-0">
+                <div className="bg-muted p-3 shrink-0 rounded-xl">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <span className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Email</span>
-                  <span className="text-foreground font-medium">siyaramfabrics@gmail.com</span>
+                  <a href="mailto:siyaramfabrics@gmail.com" className="text-foreground font-medium hover:text-primary transition-colors">
+                    siyaramfabrics@gmail.com
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="bg-muted p-3 shrink-0">
+                <div className="bg-muted p-3 shrink-0 rounded-xl">
                   <Clock className="h-6 w-6 text-primary" />
                 </div>
                 <div>
@@ -66,9 +72,26 @@ export default function ContactPage() {
             </ul>
           </div>
 
-          <div className="p-6 bg-secondary text-white space-y-3">
+          <div className="p-6 bg-secondary text-white space-y-3 rounded-2xl shadow-lg">
             <p className="text-sm text-white/70">GST Number</p>
             <p className="font-heading text-lg font-bold tracking-wide">03ABEPJ2089F2ZY</p>
+          </div>
+
+          <div className="p-6 bg-[#25D366]/10 border border-[#25D366]/30 space-y-4 rounded-2xl">
+            <p className="text-sm text-foreground/80">
+              <span className="font-semibold uppercase tracking-wider text-sm">Prefer WhatsApp?</span>
+              <span className="block mt-1 text-muted-foreground">
+                Send us your requirement directly and get a faster response from our sales team.
+              </span>
+            </p>
+            <a
+              href="https://wa.me/919888778082?text=Hello%20Siya%20Ram%20Fabrics%2C%20I%20would%20like%20to%20discuss%20a%20fabric%20requirement."
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonVariants({ size: "sm", className: "w-full uppercase tracking-widest font-semibold bg-[#25D366] text-white hover:bg-[#1EBE5A] rounded-full" })}
+            >
+              Chat on WhatsApp
+            </a>
           </div>
         </div>
 
