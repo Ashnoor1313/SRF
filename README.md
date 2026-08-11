@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Siya Ram Fabrics (SRF) — Digital Web Application
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-Interactive-purple?style=flat-square)](https://www.framer.com/motion/)
 
-First, run the development server:
+An avant-garde, agency-grade digital experience for **Siya Ram Fabrics (SRF)**, a leading knitted fabric manufacturer based in Ludhiana, Punjab (India). Operating across a 1.5 Lac sq ft facility with 300+ employees, SRF blends 26+ years of manufacturing legacy with 2nd-generation fast-fashion innovation.
+
+---
+
+## 🌟 Key Features
+
+* **Interactive Leadership Spotlight**: Dynamic spotlight section featuring Harish Jindal (Founder), Saransh Jindal, and Yuvraj Jindal with career milestones, focus areas, and portrait imagery.
+* **Interactive Fabric Catalogue**: Filterable product showcase covering Single Jersey, Pique, Rib, Interlock, Fleece, and Fast Fashion knitted fabrics with GSM ranges and end-use specifications.
+* **12-Step Manufacturing Journey**: Clear breakdown of SRF's yarn-to-dispatch manufacturing workflow.
+* **Glassmorphism Navigation**: Floating top navbar with active route pill indicators and quick WhatsApp/Phone CTAs.
+* **Responsive & Mobile-First**: Built with Tailwind CSS and Framer Motion for smooth transitions across all screen sizes.
+* **SEO Optimized**: Pre-configured meta tags, open-graph metadata, sitemap.xml, and robots.txt.
+
+---
+
+## 🚀 Quick Start
+
+### 1. Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📚 Complete Project Handover Documentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For full technical documentation, architecture diagrams, color tokens, asset breakdown, and deployment procedures, please consult **[HANDOVER.md](./HANDOVER.md)**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2026 Siya Ram Fabrics. All rights reserved.

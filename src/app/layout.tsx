@@ -73,6 +73,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#B12137",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 const jsonLd = {
@@ -111,13 +114,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} ${spaceGrotesk.variable} scroll-smooth`}>
-      <body className="font-sans antialiased bg-background text-foreground min-h-screen flex flex-col">
+      <body className="font-sans antialiased bg-background text-foreground min-h-screen flex flex-col overflow-x-hidden">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Navbar />
-        <main className="flex-grow pt-20">
+        <main className="flex-grow pt-16 md:pt-20">
           {children}
         </main>
         <Footer />
