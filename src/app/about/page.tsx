@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Building2, CheckCircle2, Factory, History, Rocket, ShieldCheck, Sparkles, TrendingUp, Award } from "lucide-react";
+import { ArrowRight, Building2, History, Rocket, Sparkles, TrendingUp } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/fade-in";
-import { InteractiveLeadershipSection, OwnersShowcaseGrid, CoreValuesGrid } from "@/components/about-interactive-sections";
+import { InteractiveLeadershipSection, OwnersShowcaseGrid, CoreValuesGrid, GrowthTransformationRibbon, DotTimelineSequence } from "@/components/about-interactive-sections";
 
 const YEARS = new Date().getFullYear() - 1998;
 
@@ -14,22 +14,6 @@ export const metadata: Metadata = {
     "From 500 sq ft and one employee in 1998 to a 1.5 lac sq ft facility with 300+ people — discover the two-generation journey of Siya Ram Fabrics.",
 };
 
-const founderMilestones = [
-  { year: "1994", title: "BTech in Civil Engineering", description: "Harish Jindal completes his civil engineering degree — instilling mathematical precision, structural discipline, and quality standards." },
-  { year: "1994–96", title: "Reliance Industries, Surat", description: "Gains hands-on experience at Reliance Industries in Surat, mastering large-scale industrial management and plant discipline." },
-  { year: "1996", title: "Market Research in Ludhiana", description: "Returns to Ludhiana and conducts two years of deep market research into fabric demand, yarn supply, and quality gaps." },
-  { year: "1998", title: "Siya Ram Fabrics Founded", description: "Founds Siya Ram Fabrics with just 1 employee and 500 sq ft. Driven by a commitment to produce consistent knitted fabric." },
-  { year: "2017", title: "2nd Gen Joins (Saransh Jindal)", description: "Saransh Jindal joins during university studies, scaling factory floor throughput, domestic sales, and B2B client networks." },
-  { year: "2023", title: "2nd Gen MBA (Yuvraj Jindal)", description: "Yuvraj Jindal joins post-MBA, launching Fast Fashion Fabrics, technological automation, and modern corporate strategy." },
-  { year: "Today", title: "1.5 Lac Sq Ft & 300+ People", description: "A complete in-house knitting, dyeing, and finishing infrastructure spanning 1.5 lac sq ft and serving manufacturers across India." },
-];
-
-const founderStats = [
-  { value: "500", label: "Sq Ft at Start (1998)" },
-  { value: "1", label: "Employee at Start" },
-  { value: "1.5 Lac", label: "Sq Ft Facility Today" },
-  { value: "300+", label: "Specialists Today" },
-];
 
 export default function AboutPage() {
   return (
@@ -64,17 +48,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder Stats Ribbon */}
+      {/* Founder Growth Stats Ribbon */}
       <section className="py-16 md:py-20 bg-primary text-white shadow-xl relative z-20">
         <div className="container mx-auto px-4 md:px-8">
-          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {founderStats.map((stat) => (
-              <StaggerItem key={stat.label} className="text-center">
-                <p className="font-numbers text-5xl md:text-7xl font-bold mb-2 tracking-tight">{stat.value}</p>
-                <p className="text-xs md:text-sm text-white/80 uppercase tracking-widest font-semibold">{stat.label}</p>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <GrowthTransformationRibbon />
         </div>
       </section>
 
@@ -107,7 +84,7 @@ export default function AboutPage() {
               </h2>
               <div className="w-20 h-1.5 bg-primary mb-8 rounded-full" />
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                Siya Ram Fabrics is a proprietorship firm established in 1998 by Mr. Harish Jindal.
+                Siya Ram Fabrics was established in 1998 by Mr. Harish Jindal.
                 With over {YEARS} years of operational excellence, we have transformed from a regional fabric supplier
                 into a comprehensive, vertically integrated manufacturing plant.
               </p>
@@ -116,7 +93,7 @@ export default function AboutPage() {
                 end-to-end quality control — ensuring consistent GSM, color accuracy, and zero defects.
               </p>
               <div className="pt-4">
-                <Link href="/manufacturing" className={buttonVariants({ size: "lg", className: "uppercase tracking-widest font-semibold rounded-full gap-2" })}>
+                <Link href="/process" className={buttonVariants({ size: "lg", className: "uppercase tracking-widest font-semibold rounded-full gap-2" })}>
                   Explore Manufacturing Workflow <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -128,8 +105,8 @@ export default function AboutPage() {
                   <Building2 className="w-8 h-8 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Business Structure</p>
-                  <p className="font-heading text-2xl font-bold text-foreground">Proprietorship Firm</p>
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Company</p>
+                  <p className="font-heading text-2xl font-bold text-foreground">Siya Ram Fabrics</p>
                 </div>
               </div>
 
@@ -212,18 +189,9 @@ export default function AboutPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {founderMilestones.map((m, i) => (
-              <FadeIn key={m.year} direction="up" delay={i * 0.08} className="bg-white/5 border border-white/10 p-8 rounded-2xl relative hover:bg-white/10 transition-colors">
-                <span className="font-numbers text-4xl font-bold text-brand-bright leading-none block mb-4">
-                  {m.year}
-                </span>
-                <h3 className="font-heading text-lg font-bold text-white mb-3 uppercase tracking-wide">
-                  {m.title}
-                </h3>
-                <p className="text-sm text-white/60 leading-relaxed">{m.description}</p>
-              </FadeIn>
-            ))}
+          {/* Interactive Dot-Wise Line Plot Milestone Timeline */}
+          <div className="mb-16">
+            <DotTimelineSequence />
           </div>
 
           <FadeIn direction="up">
@@ -310,11 +278,11 @@ export default function AboutPage() {
                 Punjab, India
               </address>
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact" className={buttonVariants({ size: "lg", className: "uppercase tracking-widest font-semibold bg-brand-bright text-black hover:bg-white rounded-full" })}>
+                <Link href="/contact" className={buttonVariants({ variant: "white", size: "lg", className: "uppercase tracking-widest font-semibold bg-brand-bright text-black hover:bg-white rounded-full" })}>
                   Get in Touch
                 </Link>
                 <a
-                  href="https://maps.google.com/?q=Hampton+Court+Business+Park,+Chandigarh+Road,+Ludhiana"
+                  href="https://maps.app.goo.gl/su8KN3AsiPXTbz9Q8"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={buttonVariants({ variant: "outline", size: "lg", className: "uppercase tracking-widest font-semibold text-white border-white/40 hover:bg-white hover:text-black rounded-full" })}
@@ -327,7 +295,7 @@ export default function AboutPage() {
             <FadeIn direction="left" className="relative h-[450px] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/10">
               <iframe
                 title="Siya Ram Fabrics Location Map"
-                src="https://www.google.com/maps?q=Hampton+Court+Business+Park,+Chandigarh+Road,+Ludhiana&output=embed"
+                src="https://maps.google.com/maps?q=Siya+Ram+Fabrics,+Ludhiana&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/coming-soon") return null;
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 md:px-8 py-20 md:py-[100px]">
@@ -34,21 +39,24 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="space-y-6">
             <h4 className="font-heading font-semibold uppercase tracking-wider text-sm">Explore</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li>
-                <Link href="/about" className="hover:text-brand-bright transition-colors">Our Story & Legacy</Link>
+                <Link href="/about" className="hover:text-brand-bright transition-colors">About Us & Legacy</Link>
               </li>
               <li>
-                <Link href="/manufacturing" className="hover:text-brand-bright transition-colors">Manufacturing Process</Link>
+                <Link href="/process" className="hover:text-brand-bright transition-colors">Our Process (Hub)</Link>
               </li>
               <li>
-                <Link href="/infrastructure" className="hover:text-brand-bright transition-colors">Our Infrastructure</Link>
+                <Link href="/infrastructure" className="hover:text-brand-bright transition-colors">Infrastructure & Plant</Link>
               </li>
               <li>
                 <Link href="/products" className="hover:text-brand-bright transition-colors">Knitted Products</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-brand-bright transition-colors">Contact Us</Link>
+                <Link href="/whats-new" className="hover:text-brand-bright transition-colors">What&apos;s New & Updates</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-brand-bright transition-colors">Contact & Inquiries</Link>
               </li>
             </ul>
           </div>
@@ -59,7 +67,14 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-brand-bright shrink-0 mt-0.5" />
-                <span>A4–A7, Hampton Court Business Park,<br />Chandigarh Road, Ludhiana – 141008,<br />Punjab, India</span>
+                <a
+                  href="https://maps.app.goo.gl/su8KN3AsiPXTbz9Q8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-bright transition-colors"
+                >
+                  A4–A7, Hampton Court Business Park,<br />Chandigarh Road, Ludhiana – 141008,<br />Punjab, India
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-brand-bright shrink-0" />

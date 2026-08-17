@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Layers, Sparkles, Waves } from "lucide-react";
+import { Layers, Waves } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { FadeIn } from "@/components/fade-in";
 import { ProductsInteractiveCatalog } from "@/components/products-interactive-catalog";
@@ -53,8 +53,9 @@ export default function ProductsPage() {
               <Link
                 href="/contact"
                 className={buttonVariants({
+                  variant: "white",
                   size: "lg",
-                  className: "uppercase tracking-widest font-semibold bg-white text-foreground hover:bg-white/90 rounded-full px-8",
+                  className: "uppercase tracking-widest font-semibold rounded-full px-8",
                 })}
               >
                 Request Sample Roll
@@ -107,19 +108,22 @@ export default function ProductsPage() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {fastFashionPoints.map((point) => (
-                  <div key={point} className="flex items-start gap-3 bg-white/5 border border-white/10 p-5 rounded-2xl">
-                    <Waves className="w-5 h-5 text-brand-bright shrink-0 mt-0.5" />
-                    <span className="text-white/80 text-sm font-medium">{point}</span>
+                  <div
+                    key={point}
+                    className="flex items-start gap-3 bg-white/5 hover:bg-white/12 border border-white/10 hover:border-brand-bright/50 hover:shadow-[0_0_20px_rgba(229,72,77,0.25)] hover:-translate-y-1 transition-all duration-300 rounded-2xl p-5 cursor-pointer group"
+                  >
+                    <Waves className="w-5 h-5 text-brand-bright shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
+                    <span className="text-white/80 group-hover:text-white text-sm font-medium transition-colors duration-300">{point}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="relative h-[400px] md:h-[550px] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+            <div className="relative h-[400px] md:h-[550px] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 hover:border-brand-bright/40 transition-all duration-500 group">
               <Image
                 src="/images/fabric_rolls.png"
                 alt="Fast fashion fabric rolls"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
           </div>
@@ -152,14 +156,14 @@ export default function ProductsPage() {
               Request a Custom Quote
             </Link>
             <Link
-              href="/manufacturing"
+              href="/process"
               className={buttonVariants({
                 size: "lg",
                 variant: "outline",
                 className: "uppercase tracking-widest font-semibold border-foreground text-foreground rounded-full px-8 py-6 w-full sm:w-auto",
               })}
             >
-              View Manufacturing <Layers className="w-4 h-4 ml-2" />
+              Our Process <Layers className="w-4 h-4 ml-2" />
             </Link>
           </div>
         </div>

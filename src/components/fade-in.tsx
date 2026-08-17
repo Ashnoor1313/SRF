@@ -112,7 +112,13 @@ interface AnimatedCounterProps {
 export function AnimatedCounter({ value, className = "" }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const [displayValue, setDisplayValue] = useState("0");
+  const [displayValue, setDisplayValue] = useState(() => {
+    const numericMatch = value.match(/\d+/);
+    if (!numericMatch) return value;
+    const prefix = value.substring(0, numericMatch.index);
+    const suffix = value.substring((numericMatch.index || 0) + numericMatch[0].length);
+    return `${prefix}0${suffix}`;
+  });
 
   useEffect(() => {
     if (!isInView) return;
@@ -120,7 +126,6 @@ export function AnimatedCounter({ value, className = "" }: AnimatedCounterProps)
     // Parse numeric parts if any
     const numericMatch = value.match(/\d+/);
     if (!numericMatch) {
-      setDisplayValue(value);
       return;
     }
 

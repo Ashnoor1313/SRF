@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Factory, Rocket, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { FadeIn, ScaleIn, StaggerContainer, StaggerItem, AnimatedCounter } from "@/components/fade-in";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/fade-in";
 
 const YEARS = new Date().getFullYear() - 1998;
 
@@ -68,7 +68,7 @@ export default function Home() {
                 <Link href="/contact" className={buttonVariants({ size: "lg", className: "uppercase tracking-widest font-bold w-full sm:w-auto rounded-full justify-center" })}>
                   Request an Enquiry
                 </Link>
-                <Link href="/about" className={buttonVariants({ variant: "outline", size: "lg", className: "uppercase tracking-widest font-bold w-full sm:w-auto text-white border-white hover:bg-white hover:text-foreground rounded-full justify-center" })}>
+                <Link href="/about" className={buttonVariants({ variant: "outline", size: "lg", className: "uppercase tracking-widest font-bold w-full sm:w-auto text-white border-white hover:bg-white hover:text-black rounded-full justify-center" })}>
                   Our Story
                 </Link>
               </div>
@@ -101,7 +101,7 @@ export default function Home() {
               <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold text-center lg:text-left shrink-0">
                 Trusted by garment manufacturers across India
               </p>
-              <div className="flex flex-wrap items-center justify-center lg:justify-end gap-2 sm:gap-3">
+              <div className="flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-end gap-1.5 sm:gap-2 max-w-full p-2 overflow-visible">
                 {[
                   "Ludhiana",
                   "Delhi NCR",
@@ -112,7 +112,7 @@ export default function Home() {
                   "Jaipur",
                   "Ahmedabad",
                 ].map((city) => (
-                  <span key={city} className="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full border border-border bg-background text-xs sm:text-sm font-heading font-semibold uppercase tracking-wider text-foreground/80">
+                  <span key={city} className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full border border-border bg-background text-[11px] sm:text-xs font-heading font-semibold uppercase tracking-wider text-foreground/80 whitespace-nowrap shrink-0 hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(177,33,55,0.35)] hover:-translate-y-0.5 hover:scale-105 transition-all duration-300 cursor-pointer">
                     {city}
                   </span>
                 ))}
@@ -192,20 +192,20 @@ export default function Home() {
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.15}>
-              <div className="text-left bg-white/5 p-6 sm:p-8 rounded-2xl border border-white/10">
-                <p className="font-numbers text-5xl sm:text-6xl md:text-7xl font-bold mb-2">500</p>
+              <div className="text-left bg-white/5 hover:bg-white/12 p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-white/30 hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                <p className="font-numbers text-5xl sm:text-6xl md:text-7xl font-bold mb-2 text-white group-hover:text-brand-bright transition-colors duration-300">500</p>
                 <p className="uppercase tracking-widest text-xs sm:text-sm text-white/80 font-semibold mb-4">Sq Ft — Where We Started</p>
-                <div className="h-px bg-white/20 my-4" />
-                <p className="font-numbers text-5xl sm:text-6xl md:text-7xl font-bold mb-2">1.5 Lac</p>
+                <div className="h-px bg-white/20 my-4 group-hover:bg-white/40 transition-colors" />
+                <p className="font-numbers text-5xl sm:text-6xl md:text-7xl font-bold mb-2 text-white group-hover:text-brand-bright transition-colors duration-300">1.5 Lac</p>
                 <p className="uppercase tracking-widest text-xs sm:text-sm text-white/80 font-semibold">Sq Ft — Where We Stand Today</p>
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.3}>
-              <div className="text-left bg-white/5 p-6 sm:p-8 rounded-2xl border border-white/10">
-                <p className="font-numbers text-5xl sm:text-6xl md:text-7xl font-bold mb-2">1</p>
+              <div className="text-left bg-white/5 hover:bg-white/12 p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-white/30 hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                <p className="font-numbers text-5xl sm:text-6xl md:text-7xl font-bold mb-2 text-white group-hover:text-brand-bright transition-colors duration-300">1</p>
                 <p className="uppercase tracking-widest text-xs sm:text-sm text-white/80 font-semibold mb-4">Employee at the Start</p>
-                <div className="h-px bg-white/20 my-4" />
-                <p className="font-numbers text-5xl sm:text-6xl md:text-7xl font-bold mb-2">300+</p>
+                <div className="h-px bg-white/20 my-4 group-hover:bg-white/40 transition-colors" />
+                <p className="font-numbers text-5xl sm:text-6xl md:text-7xl font-bold mb-2 text-white group-hover:text-brand-bright transition-colors duration-300">300+</p>
                 <p className="uppercase tracking-widest text-xs sm:text-sm text-white/80 font-semibold">Skilled Team Members</p>
               </div>
             </FadeIn>
@@ -271,40 +271,58 @@ export default function Home() {
           </FadeIn>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
-            <FadeIn direction="right" className="bg-secondary text-white p-6 sm:p-10 md:p-14 rounded-3xl flex flex-col justify-between min-h-[300px] border border-white/10 shadow-xl">
-              <div>
-                <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-2xl bg-brand-bright/15 flex items-center justify-center mb-6 sm:mb-8">
-                  <Rocket className="w-6 sm:w-8 h-6 sm:h-8 text-brand-bright" />
+            <FadeIn direction="right" className="bg-secondary text-white p-6 sm:p-10 md:p-14 rounded-3xl flex flex-col justify-between min-h-[300px] border border-white/10 shadow-xl relative overflow-hidden group hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(229,72,77,0.18)] hover:border-brand-bright/50 transition-all duration-500 cursor-pointer">
+              {/* Ambient Glows */}
+              <div className="absolute -right-12 -top-12 w-48 h-48 bg-brand-bright/10 rounded-full blur-3xl group-hover:bg-brand-bright/25 group-hover:scale-150 transition-all duration-700 pointer-events-none" />
+              <div className="absolute -left-12 -bottom-12 w-36 h-36 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all duration-700 pointer-events-none" />
+
+              <div className="relative z-10">
+                <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-2xl bg-brand-bright/15 group-hover:bg-brand-bright flex items-center justify-center mb-6 sm:mb-8 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(229,72,77,0.45)] group-hover:rotate-3">
+                  <Rocket className="w-6 sm:w-8 h-6 sm:h-8 text-brand-bright group-hover:text-white transition-all duration-300 group-hover:-translate-y-0.5" />
                 </div>
-                <h3 className="font-heading text-xl sm:text-2xl font-bold uppercase tracking-wider mb-3 sm:mb-4">Fast Fashion Fabrics</h3>
-                <p className="text-white/70 leading-relaxed text-sm sm:text-base">
+                <h3 className="font-heading text-xl sm:text-2xl font-bold uppercase tracking-wider mb-3 sm:mb-4 group-hover:text-brand-bright transition-colors duration-300">
+                  Fast Fashion Fabrics
+                </h3>
+                <p className="text-white/70 leading-relaxed text-sm sm:text-base group-hover:text-white/90 transition-colors duration-300">
                   Recognising the shift in global retail, the second generation introduced
                   fast fashion fabrics — enabling quicker turnarounds and trend-responsive
                   production without ever compromising on quality.
                 </p>
               </div>
-              <p className="text-brand-bright font-semibold uppercase tracking-widest text-xs sm:text-sm mt-6 sm:mt-8">A New Category. A New Edge.</p>
+              <div className="relative z-10 flex items-center gap-2 mt-6 sm:mt-8">
+                <p className="text-brand-bright font-semibold uppercase tracking-widest text-xs sm:text-sm group-hover:tracking-[0.15em] transition-all duration-300">
+                  A New Category. A New Edge.
+                </p>
+                <ArrowRight className="w-4 h-4 text-brand-bright opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+              </div>
             </FadeIn>
 
-            <FadeIn direction="left" className="bg-muted p-6 sm:p-10 md:p-14 rounded-3xl min-h-[300px] border border-border">
-              <div className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-10">
-                <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-2xl bg-primary/15 flex items-center justify-center shrink-0">
-                  <Sparkles className="w-6 sm:w-8 h-6 sm:h-8 text-primary" />
+            <FadeIn direction="left" className="bg-muted p-6 sm:p-10 md:p-14 rounded-3xl min-h-[300px] border border-border relative overflow-hidden group hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(177,33,55,0.12)] hover:border-primary/50 hover:bg-card transition-all duration-500 cursor-pointer">
+              {/* Ambient Glow */}
+              <div className="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/20 group-hover:scale-150 transition-all duration-700 pointer-events-none" />
+
+              <div className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-10 relative z-10">
+                <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-2xl bg-primary/15 group-hover:bg-primary flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(177,33,55,0.35)] group-hover:-rotate-3">
+                  <Sparkles className="w-6 sm:w-8 h-6 sm:h-8 text-primary group-hover:text-white transition-all duration-300 group-hover:scale-105" />
                 </div>
                 <div>
-                  <p className="font-heading text-lg sm:text-2xl font-bold uppercase tracking-wider text-foreground mb-1">Technology & Automation</p>
+                  <p className="font-heading text-lg sm:text-2xl font-bold uppercase tracking-wider text-foreground group-hover:text-primary transition-colors duration-300 mb-1">
+                    Infrastructure & Technology
+                  </p>
                   <p className="text-muted-foreground text-xs sm:text-sm">Implemented across the plant</p>
                 </div>
               </div>
-              <ul className="space-y-3 sm:space-y-4">
+              <ul className="space-y-3 sm:space-y-4 relative z-10">
                 {[
                   "Strong execution of the founder's vision — at micro and macro levels",
                   "New technology and automation across knitting, dyeing, and finishing",
                   "Streamlined processes for faster, more consistent production",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 sm:gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                    <span className="text-foreground font-medium text-xs sm:text-sm leading-relaxed">{item}</span>
+                  <li key={item} className="flex items-start gap-2.5 sm:gap-3 group/item transition-all duration-300 hover:translate-x-1.5">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5 transition-transform duration-300 group-hover/item:scale-125" />
+                    <span className="text-foreground font-medium text-xs sm:text-sm leading-relaxed transition-colors duration-300 group-hover/item:text-primary">
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -317,40 +335,44 @@ export default function Home() {
                 Leadership Team
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 items-center sm:items-start bg-card border border-border p-6 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shrink-0 border-2 border-primary/20 shadow-md">
+                <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 items-center sm:items-start bg-card border border-border p-6 rounded-3xl shadow-sm hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
+                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shrink-0 border-2 border-primary/20 group-hover:border-primary/60 shadow-md transition-colors duration-300">
                     <Image
                       src="/images/Saransh Jindal.png"
                       alt="Saransh Jindal"
                       fill
-                      className="object-cover object-top"
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <div className="text-center sm:text-left">
-                    <span className="inline-block text-[10px] sm:text-[11px] uppercase tracking-widest text-primary font-bold px-2.5 py-0.5 rounded-full bg-primary/10 mb-2">
+                    <span className="inline-block text-[10px] sm:text-[11px] uppercase tracking-widest text-primary font-bold px-2.5 py-0.5 rounded-full bg-primary/10 mb-2 group-hover:bg-primary/20 transition-colors">
                       2nd Generation
                     </span>
-                    <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-1">Saransh Jindal</h3>
+                    <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-1">
+                      Saransh Jindal
+                    </h3>
                     <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                       Graduated in 2017, joined the family business during his studies — growing up on the factory floor and driving sales & operations.
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 items-center sm:items-start bg-card border border-border p-6 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shrink-0 border-2 border-primary/20 shadow-md">
+                <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 items-center sm:items-start bg-card border border-border p-6 rounded-3xl shadow-sm hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
+                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shrink-0 border-2 border-primary/20 group-hover:border-primary/60 shadow-md transition-colors duration-300">
                     <Image
                       src="/images/Yuvraj Jindal.png"
                       alt="Yuvraj Jindal"
                       fill
-                      className="object-cover object-top"
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <div className="text-center sm:text-left">
-                    <span className="inline-block text-[10px] sm:text-[11px] uppercase tracking-widest text-primary font-bold px-2.5 py-0.5 rounded-full bg-primary/10 mb-2">
+                    <span className="inline-block text-[10px] sm:text-[11px] uppercase tracking-widest text-primary font-bold px-2.5 py-0.5 rounded-full bg-primary/10 mb-2 group-hover:bg-primary/20 transition-colors">
                       2nd Generation
                     </span>
-                    <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-1">Yuvraj Jindal</h3>
+                    <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 mb-1">
+                      Yuvraj Jindal
+                    </h3>
                     <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                       Completed his MBA in 2023, bringing modern business strategy, technology integration, and expansion vision to the operation.
                     </p>
@@ -386,7 +408,7 @@ export default function Home() {
               </p>
 
               <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
-                {["High-speed circular knitting machines", "Automated quality inspection systems", "Climate-controlled production environment", "Fast fashion & trend-responsive production"].map((item, i) => (
+                {["High-speed circular knitting machines", "Thorough quality inspection systems", "In-house ETP control & sustainability", "Fast fashion & trend-responsive production"].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-brand-bright shrink-0 mt-0.5" />
                     <span className="text-white font-medium text-sm sm:text-base">{item}</span>
@@ -394,13 +416,15 @@ export default function Home() {
                 ))}
               </ul>
 
-              <Link href="/infrastructure" className={buttonVariants({ size: "lg", variant: "outline", className: "uppercase tracking-widest font-bold text-xs sm:text-sm text-white border-white hover:bg-white hover:text-foreground rounded-full w-full sm:w-auto justify-center" })}>
+              <Link href="/infrastructure" className={buttonVariants({ size: "lg", variant: "outline", className: "uppercase tracking-widest font-bold text-xs sm:text-sm text-white border-white hover:bg-white hover:text-black rounded-full w-full sm:w-auto justify-center" })}>
                 View Infrastructure
               </Link>
             </FadeIn>
           </div>
         </div>
       </section>
+
+
 
       {/* CTA Section */}
       <section className="py-16 sm:py-20 md:py-[120px] bg-primary text-white">

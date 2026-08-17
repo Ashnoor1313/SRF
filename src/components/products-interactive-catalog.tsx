@@ -295,22 +295,23 @@ export function ProductsInteractiveCatalog() {
                   onClick={() => setModalFabric(null)}
                   className={buttonVariants({
                     size: "default",
-                    className: "w-full uppercase tracking-widest text-xs font-bold rounded-full bg-primary hover:bg-primary/90 text-white justify-center",
+                    className: "flex-1 w-full uppercase tracking-widest text-xs font-bold rounded-full bg-primary hover:bg-primary/90 text-white justify-center gap-1.5 shadow-sm",
                   })}
                 >
-                  Fill Inquiry Form <Sparkles className="w-3.5 h-3.5 ml-1.5" />
+                  <span>Fill Inquiry Form</span>
+                  <Sparkles className="w-3.5 h-3.5" />
                 </Link>
                 <Link
-                  href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hi Siya Ram Fabrics, I would like to request physical sample swatches for ${modalFabric.name} (${modalFabric.gsmRange}).`)}`}
+                  href={`https://wa.me/919888778082?text=${encodeURIComponent(`Hi Siya Ram Fabrics, I would like to request physical sample swatches for ${modalFabric.name} (${modalFabric.gsmRange}).`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={buttonVariants({
                     size: "default",
                     variant: "outline",
-                    className: "w-full uppercase tracking-widest text-xs font-bold rounded-full border-green-600 text-green-600 hover:bg-green-600 hover:text-white justify-center gap-2",
+                    className: "flex-1 w-full uppercase tracking-widest text-xs font-bold rounded-full border-[#25D366]/50 bg-[#25D366]/5 text-[#25D366] hover:bg-[#25D366]/15 hover:border-[#25D366] hover:text-[#25D366] hover:shadow-[0_0_15px_rgba(37,211,102,0.25)] active:bg-[#25D366]/20 transition-all duration-300 justify-center gap-2",
                   })}
                 >
-                  <MessageSquare className="w-4 h-4" />
+                  <MessageSquare className="w-4 h-4 text-[#25D366]" />
                   <span>WhatsApp Inquiry</span>
                 </Link>
               </div>

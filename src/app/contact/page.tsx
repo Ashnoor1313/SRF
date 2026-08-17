@@ -30,11 +30,16 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <span className="block text-xs uppercase tracking-widest text-muted-foreground font-semibold mb-1">Address</span>
-                  <span className="text-foreground font-medium text-sm leading-relaxed">
+                  <a
+                    href="https://maps.app.goo.gl/su8KN3AsiPXTbz9Q8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground font-medium text-sm leading-relaxed hover:text-primary transition-colors inline-block"
+                  >
                     A4–A7, Hampton Court Business Park,<br />
                     Chandigarh Road, Ludhiana – 141008,<br />
                     Punjab, India
-                  </span>
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">

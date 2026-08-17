@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -25,6 +26,7 @@ function WhatsAppIcon({ className = "w-7 h-7" }: { className?: string }) {
 }
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +40,8 @@ export default function WhatsAppButton() {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
+
+  if (pathname === "/coming-soon") return null;
 
   return (
     <div ref={wrapRef} className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-4">
