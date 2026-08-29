@@ -37,8 +37,8 @@ const PROCESS_STAGES = [
     imageSpec: {
       subject: "Circular Knitting Machinery & Greige Fabric Formation",
       dimensions: "1200 × 675 px (16:9)",
-      fileName: "process-knitting.jpg",
-      assetPath: "/images/process-knitting.jpg",
+      fileName: "SDW01497.JPG.jpeg",
+      assetPath: "/images/SDW01497.JPG.jpeg",
       badge: "High-Speed Knitting Line",
     },
     stats: [
@@ -68,8 +68,8 @@ const PROCESS_STAGES = [
     imageSpec: {
       subject: "Softflow Dyeing Vessels & Computerized Color Kitchen",
       dimensions: "1200 × 675 px (16:9)",
-      fileName: "process-dyeing.jpg",
-      assetPath: "/images/process-dyeing.jpg",
+      fileName: "IMG-20260825-WA0002.jpg",
+      assetPath: "/images/IMG-20260825-WA0002.jpg",
       badge: "Eco Softflow Dyehouse",
     },
     stats: [
@@ -99,8 +99,8 @@ const PROCESS_STAGES = [
     imageSpec: {
       subject: "Stenter Frames, Felt Compactor & 4-Point Grading",
       dimensions: "1200 × 675 px (16:9)",
-      fileName: "process-finishing.jpg",
-      assetPath: "/images/process-finishing.jpg",
+      fileName: "Stenter.png",
+      assetPath: "/images/Stenter.png",
       badge: "Compacting & Stenter Finishing",
     },
     stats: [
@@ -235,6 +235,7 @@ export default function ProcessHubPage() {
                               src={stage.imageSpec.assetPath}
                               alt={stage.imageSpec.subject}
                               fill
+                              unoptimized
                               className="object-cover object-center group-hover/img:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
@@ -348,7 +349,8 @@ export default function ProcessHubPage() {
                 className={buttonVariants({
                   variant: "outline",
                   size: "lg",
-                  className: "uppercase tracking-widest font-semibold text-white border-white/40 hover:bg-white hover:text-black rounded-full",
+                  className:
+                    "uppercase tracking-widest font-semibold text-white border border-white/40 bg-transparent hover:bg-white hover:text-black rounded-full transition-all",
                 })}
               >
                 View Infrastructure & Machines
@@ -357,7 +359,8 @@ export default function ProcessHubPage() {
                 href="/contact"
                 className={buttonVariants({
                   size: "lg",
-                  className: "uppercase tracking-widest font-semibold rounded-full bg-brand-bright text-black hover:bg-white",
+                  className:
+                    "uppercase tracking-widest font-semibold rounded-full bg-primary text-white hover:bg-[#8F1A2C] hover:text-white transition-all shadow-lg",
                 })}
               >
                 Request Custom Sample

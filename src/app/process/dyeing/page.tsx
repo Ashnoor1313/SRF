@@ -118,7 +118,7 @@ export default function DyeingProcessPage() {
           <FadeIn direction="up" delay={0.2}>
             <div className="mt-12 relative w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
               <Image
-                src="/images/process-dyeing.jpg"
+                src="/images/IMG-20260825-WA0002.jpg"
                 alt="Softflow Dyeing Vessels and Plant Floor"
                 fill
                 className="object-cover object-center"
@@ -246,7 +246,8 @@ export default function DyeingProcessPage() {
               href="/process/finishing"
               className={buttonVariants({
                 size: "lg",
-                className: "uppercase tracking-widest font-semibold rounded-full bg-brand-bright text-black hover:bg-white gap-2 shrink-0",
+                className:
+                  "uppercase tracking-widest font-semibold rounded-full bg-primary text-white hover:bg-[#8F1A2C] hover:text-white gap-2 shrink-0 transition-all shadow-md",
               })}
             >
               <span>Explore Finishing Process</span>

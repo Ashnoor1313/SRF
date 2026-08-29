@@ -1,166 +1,394 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, MessageSquare, Search, Shirt, Sparkles, X } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowLeft,
+  Check,
+  Eye,
+  ImageIcon,
+  MessageSquare,
+  Search,
+  Shirt,
+  Sparkles,
+  Sun,
+  Snowflake,
+  X,
+  Layers,
+  CheckCircle2,
+} from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { COLLECTIONS, FABRICS, FabricItem } from "@/data/fabrics";
 
-export interface FabricItem {
-  id: string;
-  name: string;
-  category: "basics" | "textured" | "heavyweight" | "fast-fashion";
-  description: string;
-  gsmRange: string;
-  features: string[];
-  bestFor: string;
-  tag?: string;
-  composition: string;
-  availableColors: string[];
+// Image display component with graceful fallback for user's real images
+function FabricCardImage({
+  fabric,
+  onOpenModal,
+}: {
+  fabric: FabricItem;
+  onOpenModal: () => void;
+}) {
+  const [imageError, setImageError] = useState(false);
+  const isSummer = fabric.collections.includes("summer");
+
+  return (
+    <div
+      onClick={onOpenModal}
+      className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-gradient-to-br from-muted via-muted/60 to-background border border-border/80 group-hover:border-primary/40 transition-all duration-500 mb-5 shadow-inner cursor-pointer"
+    >
+      {fabric.image && !imageError ? (
+        <Image
+          src={fabric.image}
+          alt={`${fabric.name} fabric manufactured by Siya Ram Fabrics`}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        /* Aesthetic Textile Swatch Space (ready for real photo) */
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-card via-muted/50 to-muted group-hover:from-muted/40 group-hover:to-card transition-colors duration-500">
+          {/* Subtle Textile Weave Grid Graphic Pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.06] dark:opacity-[0.08] pointer-events-none"
+            style={{
+              backgroundImage: `radial-gradient(currentColor 1px, transparent 1px), radial-gradient(currentColor 1px, transparent 1px)`,
+              backgroundSize: `16px 16px`,
+              backgroundPosition: `0 0, 8px 8px`,
+            }}
+          />
+
+          <div
+            className={cn(
+              "w-12 h-12 rounded-2xl flex items-center justify-center mb-2.5 transition-all duration-300 shadow-sm",
+              isSummer
+                ? "bg-amber-500/15 text-amber-500 border border-amber-500/30 group-hover:bg-amber-500 group-hover:text-white"
+                : "bg-cyan-500/15 text-cyan-500 border border-cyan-500/30 group-hover:bg-cyan-500 group-hover:text-white"
+            )}
+          >
+            <Shirt className="w-6 h-6" />
+          </div>
+
+          <span className="text-[11px] font-heading font-bold uppercase tracking-wider text-foreground">
+            {fabric.name}
+          </span>
+          <span className="text-[10px] text-muted-foreground mt-0.5 flex items-center gap-1">
+            <ImageIcon className="w-3 h-3 text-muted-foreground/70" />
+            <span>Fabric Swatch Photo</span>
+          </span>
+        </div>
+      )}
+
+      {/* Clean Eye Icon Button */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpenModal();
+        }}
+        aria-label={`View ${fabric.name} specifications`}
+        className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/65 hover:bg-primary text-white border border-white/25 hover:border-primary backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 cursor-pointer"
+      >
+        <Eye className="w-4 h-4" />
+      </button>
+    </div>
+  );
 }
 
-export const FABRICS: FabricItem[] = [
-  {
-    id: "single-jersey",
-    name: "Single Jersey",
-    category: "basics",
-    description: "Lightweight, breathable, and exceptionally smooth — the everyday workhorse fabric for t-shirts, innerwear, and tops.",
-    gsmRange: "120 – 240 GSM",
-    composition: "100% Combed Cotton, Cotton-Poly Blends, Lycra Jersey",
-    availableColors: ["Pure White", "Jet Black", "Navy Blue", "Melange Grey", "Custom Shades"],
-    features: ["100% Cotton & Cotton-Poly Blends", "Biowashed & Soft Finish Options", "High Color Fastness & Dimensional Stability"],
-    bestFor: "Basic T-Shirts, Polo Shirts, Casual Tops, Sleepwear",
-  },
-  {
-    id: "pique",
-    name: "Pique Fabric",
-    category: "textured",
-    description: "Distinct honeycomb waffle texture engineered for classic polo shirts with superior breathability and structural integrity.",
-    gsmRange: "180 – 280 GSM",
-    composition: "Cotton Pique, PC Matty, Poly Pique",
-    availableColors: ["Royal Blue", "Maroon", "Emerald Green", "Charcoal", "Bright Red"],
-    features: ["Classic Honeycomb & Matty Weave", "Minimal Shrinkage & Pill Resistance", "Vibrant Piece-Dyed Shades"],
-    bestFor: "Corporate Polo Shirts, Sportswear, Collar T-Shirts",
-    tag: "Popular",
-  },
-  {
-    id: "rib",
-    name: "Rib Knit (1x1 & 2x2)",
-    category: "textured",
-    description: "Highly elastic, form-fitting double knit with vertical ribs — essential for collar cuffs, waistbands, and fitted garments.",
-    gsmRange: "160 – 320 GSM",
-    composition: "1x1 Cotton Rib, 2x2 Heavy Rib, Spandex Rib",
-    availableColors: ["Matching Dyeing for All Body Fabrics"],
-    features: ["Excellent Stretch Recovery", "Lycra/Spandex Infused Options", "Resilient Texture Under Tension"],
-    bestFor: "Collars, Cuffs, Ribbed Tank Tops, Trim Accents",
-  },
-  {
-    id: "interlock",
-    name: "Interlock Double Knit",
-    category: "heavyweight",
-    description: "Smooth double-sided knit fabric with no curling edges. Luxuriously soft, thick, and ideal for mid-weight apparel.",
-    gsmRange: "200 – 340 GSM",
-    composition: "100% Compacted Cotton Interlock",
-    availableColors: ["Pastel Shades", "Dark Tones", "Custom Dyeing"],
-    features: ["Identical Smooth Surfaces on Both Sides", "Heavyweight Comfort & Zero Curl", "Superior Thermal Insulation"],
-    bestFor: "Premium T-Shirts, Babywear, Activewear, Loungewear",
-  },
-  {
-    id: "fleece",
-    name: "Fleece & Loopknit",
-    category: "heavyweight",
-    description: "Brushed inner lining providing plush insulation and warmth. Available in 2-thread, 3-thread fleece, and French Terry.",
-    gsmRange: "280 – 420 GSM",
-    composition: "3-Thread Fleece, 2-Thread Loopknit, French Terry",
-    availableColors: ["Heather Grey", "Olive Green", "Oatmeal", "Black", "Burgundy"],
-    features: ["Brushed Soft Inner Texture", "Heavyweight Winter Fabric", "Anti-Pilling Finish"],
-    bestFor: "Hoodies, Sweatshirts, Joggers, Winterwear",
-    tag: "Heavy Duty",
-  },
-  {
-    id: "fast-fashion",
-    name: "Fast Fashion Structures",
-    category: "fast-fashion",
-    description: "Trend-driven textured knits introduced by the 2nd generation — engineered for modern retail speed and rapid sampling.",
-    gsmRange: "140 – 300 GSM",
-    composition: "Waffle Knit, Jacquard Textures, Slub Knit, Ottoman",
-    availableColors: ["Seasonal Trend Palettes & Customized Lab Dips"],
-    features: ["Rapid Sampling & Quick Turnaround", "Unique Textures & Slub Designs", "Seasonal Color Matching"],
-    bestFor: "Retail Collections, Fast-Cycle Fashion, Designer Lines",
-    tag: "2nd Gen Innovation",
-  },
-];
-
 export function ProductsInteractiveCatalog() {
-  const [selectedTab, setSelectedTab] = useState<string>("all");
+  const [activeCollection, setActiveCollection] = useState<"summer" | "winter" | "all">("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [modalFabric, setModalFabric] = useState<FabricItem | null>(null);
+  const productsViewRef = useRef<HTMLDivElement>(null);
+
+  const openCollection = (col: "summer" | "winter") => {
+    setActiveCollection(col);
+    setSelectedCategory("all");
+    setSearchQuery("");
+    setTimeout(() => {
+      productsViewRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
 
   const filteredFabrics = FABRICS.filter((fabric) => {
-    const matchesCategory = selectedTab === "all" || fabric.category === selectedTab;
+    const matchesCollection =
+      activeCollection === "all" || fabric.collections.includes(activeCollection);
+    const matchesCategory =
+      selectedCategory === "all" || fabric.category === selectedCategory;
     const matchesSearch =
       searchQuery === "" ||
       fabric.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       fabric.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       fabric.gsmRange.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      fabric.composition.toLowerCase().includes(searchQuery.toLowerCase()) ||
       fabric.bestFor.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesCollection && matchesCategory && matchesSearch;
   });
 
   return (
-    <div className="w-full space-y-8 sm:space-y-10">
-      {/* Filter Tabs & Search Bar */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-        {/* Category Tabs with Mobile Swipe */}
-        <div className="w-full md:w-auto overflow-x-auto no-scrollbar py-1">
-          <div className="flex items-center gap-1.5 sm:gap-2 bg-muted p-1.5 sm:p-2 rounded-2xl border border-border w-max max-w-full">
-            {[
-              { id: "all", label: "All Fabrics" },
-              { id: "basics", label: "Basics & Jersey" },
-              { id: "textured", label: "Textured & Pique" },
-              { id: "heavyweight", label: "Interlock & Fleece" },
-              { id: "fast-fashion", label: "Fast Fashion" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setSelectedTab(tab.id)}
-                className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shrink-0 ${
-                  selectedTab === tab.id
-                    ? "bg-primary text-white shadow-sm scale-102"
-                    : "text-muted-foreground hover:text-foreground hover:bg-background/80"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+    <div className="w-full space-y-12 sm:space-y-16">
+      {/* 1. Main Collection Cards Section (Summer & Winter) */}
+      <div className="space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span className="text-primary font-semibold tracking-[0.15em] uppercase text-xs sm:text-sm mb-2 block">
+              Seasonal Catalogues
+            </span>
+            <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-foreground">
+              Choose a Collection
+            </h3>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveCollection("all")}
+              className={cn(
+                "text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-full border transition-all duration-300 cursor-pointer",
+                activeCollection === "all"
+                  ? "bg-primary text-white border-primary shadow-sm"
+                  : "bg-card border-border text-muted-foreground hover:text-foreground hover:border-primary/40"
+              )}
+            >
+              Browse All Products ({FABRICS.length})
+            </button>
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="relative w-full md:w-72">
-          <Search className="w-4 h-4 text-muted-foreground absolute left-3.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            placeholder="Search GSM, cotton, fleece..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-muted/60 border border-border rounded-xl text-xs font-medium focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground/70"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground text-xs"
-            >
-              ✕
-            </button>
-          )}
+        {/* 2 Primary Seasonal Collection Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {COLLECTIONS.map((col) => {
+            const isColActive = activeCollection === col.id;
+            const isSummer = col.id === "summer";
+
+            return (
+              <div
+                key={col.id}
+                onClick={() => openCollection(col.id)}
+                className={cn(
+                  "group relative rounded-3xl overflow-hidden border transition-all duration-500 cursor-pointer flex flex-col justify-between p-6 sm:p-8 md:p-10 min-h-[340px] shadow-sm",
+                  isColActive
+                    ? "border-primary ring-2 ring-primary/25 shadow-[0_20px_50px_rgba(177,33,55,0.2)] -translate-y-1.5"
+                    : "border-border hover:border-primary/60 hover:shadow-2xl hover:-translate-y-1.5 bg-card"
+                )}
+              >
+                {/* High-Resolution Background Photography */}
+                <Image
+                  src={col.image}
+                  alt={col.title}
+                  fill
+                  unoptimized
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+
+                {/* Dark Cinematic Gradient for High Contrast */}
+                <div
+                  className={cn(
+                    "absolute inset-0 transition-colors duration-500 z-10",
+                    isColActive
+                      ? "bg-gradient-to-t from-black/95 via-black/75 to-black/40"
+                      : "bg-gradient-to-t from-black/95 via-black/70 to-black/35 group-hover:via-black/55"
+                  )}
+                />
+
+                {/* Top Row: Icon + Badge + Open CTA Indicator */}
+                <div className="relative z-20 flex items-center justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={cn(
+                        "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-md",
+                        isSummer
+                          ? "bg-amber-500/20 border border-amber-500/40 text-amber-400"
+                          : "bg-cyan-500/20 border border-cyan-500/40 text-cyan-400"
+                      )}
+                    >
+                      {isSummer ? <Sun className="w-6 h-6" /> : <Snowflake className="w-6 h-6" />}
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-widest px-3.5 py-1 rounded-full bg-white/10 text-white/95 border border-white/20 backdrop-blur-md">
+                      {col.badge}
+                    </span>
+                  </div>
+
+                  <span
+                    className={cn(
+                      "text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full transition-all duration-300 backdrop-blur-md",
+                      isColActive
+                        ? "bg-primary text-white border border-primary shadow-sm"
+                        : "bg-black/60 text-white/90 border border-white/20 group-hover:border-primary group-hover:text-white"
+                    )}
+                  >
+                    {isColActive ? "Viewing Now" : "Explore Collection"}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-20 space-y-3.5">
+                  <div className="inline-block px-3.5 py-1 rounded-xl bg-black/65 border border-white/20 backdrop-blur-md">
+                    <span className="font-numbers text-xs font-bold text-brand-bright">
+                      {col.highlights}
+                    </span>
+                  </div>
+
+                  <h4 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-white group-hover:text-brand-bright transition-colors duration-300">
+                    {col.title}
+                  </h4>
+
+                  <p className="text-white/80 text-xs sm:text-sm leading-relaxed max-w-xl">
+                    {col.description}
+                  </p>
+
+                  <div className="pt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-bright group-hover:translate-x-1.5 transition-transform duration-300">
+                    <span>
+                      {isColActive
+                        ? `Displaying all ${col.fabricCount} fabrics below`
+                        : `Open ${col.title} (${col.fabricCount} Products)`}
+                    </span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Bottom Active Glow Bar */}
+                <div
+                  className={cn(
+                    "absolute bottom-0 inset-x-0 h-1.5 bg-gradient-to-r from-primary via-brand-bright to-primary transition-opacity duration-500 z-30",
+                    isColActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  )}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Fabric Cards Grid */}
+      {/* 2. Products Section Anchor & Active Header */}
+      <div ref={productsViewRef} className="space-y-6 pt-6 border-t border-border">
+        {/* Active Collection Navigator Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-muted/50 border border-border p-4 sm:p-5 rounded-2xl">
+          <div className="flex flex-wrap items-center gap-3">
+            {activeCollection !== "all" && (
+              <button
+                onClick={() => setActiveCollection("all")}
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-xl bg-card border border-border hover:border-primary text-foreground transition-all cursor-pointer"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Show All Collections</span>
+              </button>
+            )}
+
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                Showing:
+              </span>
+              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                {activeCollection === "all"
+                  ? `All Knitted Fabrics (${filteredFabrics.length} of ${FABRICS.length} Products)`
+                  : activeCollection === "summer"
+                  ? `☀️ Summer Collection (${filteredFabrics.length} Products)`
+                  : `❄️ Winter Collection (${filteredFabrics.length} Products)`}
+              </span>
+            </div>
+          </div>
+
+          {/* Quick Collection Switcher Tabs */}
+          <div className="flex items-center gap-1.5 bg-card p-1 rounded-xl border border-border self-start sm:self-auto">
+            <button
+              onClick={() => setActiveCollection("all")}
+              className={cn(
+                "text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg transition-all cursor-pointer",
+                activeCollection === "all"
+                  ? "bg-primary text-white shadow-xs"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              All ({FABRICS.length})
+            </button>
+            <button
+              onClick={() => setActiveCollection("summer")}
+              className={cn(
+                "text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1",
+                activeCollection === "summer"
+                  ? "bg-amber-500 text-white shadow-xs"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <Sun className="w-3 h-3" />
+              Summer (4)
+            </button>
+            <button
+              onClick={() => setActiveCollection("winter")}
+              className={cn(
+                "text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1",
+                activeCollection === "winter"
+                  ? "bg-cyan-600 text-white shadow-xs"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <Snowflake className="w-3 h-3" />
+              Winter (6)
+            </button>
+          </div>
+        </div>
+
+        {/* Sub-Category Filter Tabs & Search Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Category Tabs */}
+          <div className="w-full md:w-auto overflow-x-auto no-scrollbar py-1">
+            <div className="flex items-center gap-1.5 sm:gap-2 bg-muted p-1.5 sm:p-2 rounded-2xl border border-border w-max max-w-full">
+              {[
+                { id: "all", label: "All Types" },
+                { id: "textured", label: "Matty & Textured" },
+                { id: "heavyweight", label: "Heavy Fleece & 3-Thread" },
+                { id: "basics", label: "Cotton & Basics" },
+                { id: "fast-fashion", label: "Fast Fashion & Drape" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setSelectedCategory(tab.id)}
+                  className={cn(
+                    "px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shrink-0 cursor-pointer",
+                    selectedCategory === tab.id
+                      ? "bg-primary text-white shadow-sm scale-102"
+                      : "text-muted-foreground hover:text-foreground hover:bg-background/80"
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative w-full md:w-72">
+            <Search className="w-4 h-4 text-muted-foreground absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="Search fleece, matty, GSM..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-8 py-2.5 bg-muted/60 border border-border rounded-xl text-xs font-medium focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground/70"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                aria-label="Clear search"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground text-xs cursor-pointer"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Product Cards Grid with Dedicated Image Area */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={selectedTab + searchQuery}
+          key={activeCollection + selectedCategory + searchQuery}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
@@ -170,66 +398,91 @@ export function ProductsInteractiveCatalog() {
           {filteredFabrics.map((fabric) => (
             <div
               key={fabric.id}
-              className="bg-card border border-border rounded-3xl p-6 sm:p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+              className="bg-card border border-border rounded-3xl p-5 sm:p-6 hover:shadow-2xl hover:border-primary/50 hover:-translate-y-1.5 transition-all duration-400 flex flex-col justify-between group relative overflow-hidden shadow-xs"
             >
-              {fabric.tag && (
-                <span className="absolute top-5 sm:top-6 right-5 sm:right-6 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest bg-primary/10 text-primary px-2.5 sm:px-3 py-1 rounded-full border border-primary/20">
-                  {fabric.tag}
-                </span>
-              )}
-
               <div>
-                <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 sm:mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                  <Shirt className="w-5 sm:w-6 h-5 sm:h-6" />
+                {/* Dedicated Fabric Image Area */}
+                <FabricCardImage
+                  fabric={fabric}
+                  onOpenModal={() => setModalFabric(fabric)}
+                />
+
+                {/* Fabric Name, Tag, GSM & Composition Header */}
+                <div className="space-y-2 mb-3.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-heading text-xl sm:text-2xl font-bold uppercase tracking-wide text-foreground group-hover:text-primary transition-colors duration-300">
+                      {fabric.name}
+                    </h3>
+                    {fabric.tag && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 shrink-0">
+                        {fabric.tag}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="font-numbers text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-md">
+                      {fabric.gsmRange}
+                    </span>
+                    <span className="text-[11px] font-medium text-muted-foreground bg-muted/80 border border-border px-2.5 py-0.5 rounded-md">
+                      {fabric.composition}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="font-numbers text-xs font-bold text-primary bg-muted px-2.5 py-1 rounded-md">
-                    {fabric.gsmRange}
-                  </span>
-                </div>
-
-                <h3 className="font-heading text-xl sm:text-2xl font-bold uppercase tracking-wide text-foreground mb-2 sm:mb-3">
-                  {fabric.name}
-                </h3>
-                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-6">
+                {/* Refined Description */}
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-5 line-clamp-3">
                   {fabric.description}
                 </p>
 
-                {/* Features */}
-                <div className="space-y-2 mb-6">
+                {/* 3 Key Feature Checkmarks */}
+                <div className="space-y-2 mb-6 bg-muted/40 p-3.5 rounded-2xl border border-border/50">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-muted-foreground block mb-1">
+                    Key Specifications
+                  </span>
                   {fabric.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs font-medium text-foreground/80">
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2 text-xs font-medium text-foreground/90"
+                    >
                       <Check className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                      <span>{feat}</span>
+                      <span className="leading-snug">{feat}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-5 sm:pt-6 border-t border-border space-y-4">
+              {/* Card Footer */}
+              <div className="pt-4 border-t border-border space-y-4">
                 <div>
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold block mb-1">Recommended End-Use</span>
-                  <span className="text-xs font-bold text-foreground">{fabric.bestFor}</span>
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold block mb-1">
+                    RECOMMENDED END-USE
+                  </span>
+                  <span className="text-xs font-bold text-foreground block">
+                    {fabric.bestFor}
+                  </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2.5">
                   <button
                     onClick={() => setModalFabric(fabric)}
-                    className="w-full uppercase tracking-widest text-[11px] font-bold py-2.5 rounded-full border border-border bg-muted hover:bg-card text-foreground transition-all flex items-center justify-center gap-1.5"
+                    className="w-full uppercase tracking-widest text-[11px] font-bold py-2.5 rounded-full border border-border bg-muted hover:bg-card text-foreground hover:border-primary/40 transition-all flex items-center justify-center cursor-pointer shadow-xs"
                   >
-                    <span>View Specs</span>
+                    <span>VIEW SPECS</span>
                   </button>
                   <Link
-                    href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hi Siya Ram Fabrics, I am interested in inquiring about ${fabric.name} (${fabric.gsmRange}). Please send sample roll details.`)}`}
+                    href={`https://wa.me/919888778082?text=${encodeURIComponent(
+                      `Hi Siya Ram Fabrics, I am interested in inquiring about ${fabric.name} (${fabric.gsmRange}). Please send sample roll details and pricing.`
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={buttonVariants({
                       size: "sm",
-                      className: "w-full uppercase tracking-widest text-[11px] font-bold rounded-full bg-primary hover:bg-primary/90 text-white transition-all py-2.5 justify-center gap-1",
+                      className:
+                        "w-full uppercase tracking-widest text-[11px] font-bold rounded-full bg-primary hover:bg-[#8F1A2C] text-white hover:text-white transition-all py-2.5 justify-center gap-1 shadow-xs",
                     })}
                   >
-                    <span>Sample Roll</span>
+                    <span>SAMPLE ROLL</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -239,76 +492,148 @@ export function ProductsInteractiveCatalog() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Modal Dialog for Specs & Direct Inquiry */}
+      {/* 4. Modal Dialog for Full Technical Specs */}
       <AnimatePresence>
         {modalFabric && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-xl bg-card border border-border rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6"
+              className="relative w-full max-w-2xl bg-card border border-border rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 my-auto"
             >
               <button
                 onClick={() => setModalFabric(null)}
-                className="absolute top-5 right-5 text-muted-foreground hover:text-foreground text-lg font-bold w-8 h-8 rounded-full bg-muted flex items-center justify-center"
+                aria-label="Close modal"
+                className="absolute top-5 right-5 text-muted-foreground hover:text-foreground text-lg font-bold w-9 h-9 rounded-full bg-muted hover:bg-muted/80 flex items-center justify-center cursor-pointer transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
                   Technical Specifications
                 </span>
-                <h3 className="font-heading text-2xl sm:text-3xl font-bold uppercase text-foreground">{modalFabric.name}</h3>
-                <p className="text-muted-foreground text-xs sm:text-sm">{modalFabric.description}</p>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground bg-muted px-3 py-1 rounded-full border border-border">
+                  {modalFabric.collections.includes("summer")
+                    ? "☀️ Summer Knits"
+                    : "❄️ Winter Knits"}
+                </span>
+                {modalFabric.tag && (
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white bg-primary px-3 py-1 rounded-full">
+                    {modalFabric.tag}
+                  </span>
+                )}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-muted/60 p-4 rounded-2xl border border-border/60">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-muted-foreground block mb-0.5">GSM Range</span>
-                  <span className="font-numbers text-sm font-bold text-primary">{modalFabric.gsmRange}</span>
+              {/* Real Fabric Photo Preview in Modal if Available */}
+              {modalFabric.image && (
+                <div className="relative w-full aspect-[21/9] sm:aspect-[16/7] rounded-2xl overflow-hidden border border-border/80 bg-muted shadow-inner">
+                  <Image
+                    src={modalFabric.image}
+                    alt={`${modalFabric.name} real fabric photograph`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 600px"
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-2.5 left-3.5 flex items-center gap-2 text-white">
+                    <span className="text-[10px] font-bold uppercase tracking-widest bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20">
+                      Real Fabric Swatch
+                    </span>
+                    <span className="text-[11px] font-numbers font-bold text-brand-bright">
+                      {modalFabric.gsmRange}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-muted-foreground block mb-0.5">Fiber Composition</span>
-                  <span className="text-xs font-semibold text-foreground">{modalFabric.composition}</span>
-                </div>
-                <div className="sm:col-span-2">
-                  <span className="text-[10px] uppercase font-bold text-muted-foreground block mb-0.5">Available Colors & Dyeing</span>
-                  <span className="text-xs font-medium text-foreground">{modalFabric.availableColors.join(", ")}</span>
-                </div>
-              </div>
+              )}
 
               <div className="space-y-2">
-                <span className="text-[10px] uppercase font-bold text-primary tracking-widest block">Key Attributes</span>
+                <h3 className="font-heading text-2xl sm:text-3xl font-bold uppercase text-foreground">
+                  {modalFabric.name}
+                </h3>
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                  {modalFabric.description}
+                </p>
+              </div>
+
+              {/* Technical Matrix Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-muted/60 p-4 sm:p-5 rounded-2xl border border-border/60">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-muted-foreground block mb-0.5">
+                    GSM Range
+                  </span>
+                  <span className="font-numbers text-sm font-bold text-primary">
+                    {modalFabric.gsmRange}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-muted-foreground block mb-0.5">
+                    Fiber Composition
+                  </span>
+                  <span className="text-xs font-semibold text-foreground">
+                    {modalFabric.composition}
+                  </span>
+                </div>
+                <div className="sm:col-span-2">
+                  <span className="text-[10px] uppercase font-bold text-muted-foreground block mb-0.5">
+                    Available Colors & Dyeing
+                  </span>
+                  <span className="text-xs font-medium text-foreground">
+                    {modalFabric.availableColors.join(", ")}
+                  </span>
+                </div>
+                <div className="sm:col-span-2">
+                  <span className="text-[10px] uppercase font-bold text-muted-foreground block mb-0.5">
+                    Recommended Apparel End-Use
+                  </span>
+                  <span className="text-xs font-semibold text-foreground">
+                    {modalFabric.bestFor}
+                  </span>
+                </div>
+              </div>
+
+              {/* Key Features */}
+              <div className="space-y-2.5">
+                <span className="text-[10px] uppercase font-bold text-primary tracking-widest block">
+                  Manufacturing & Quality Attributes
+                </span>
                 {modalFabric.features.map((feat, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-xs font-medium text-foreground/90">
-                    <Check className="w-3.5 h-3.5 text-primary shrink-0" />
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2 text-xs font-medium text-foreground/90"
+                  >
+                    <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
                     <span>{feat}</span>
                   </div>
                 ))}
               </div>
 
+              {/* CTAs */}
               <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-center gap-3">
                 <Link
                   href="/contact"
                   onClick={() => setModalFabric(null)}
                   className={buttonVariants({
                     size: "default",
-                    className: "flex-1 w-full uppercase tracking-widest text-xs font-bold rounded-full bg-primary hover:bg-primary/90 text-white justify-center gap-1.5 shadow-sm",
+                    className:
+                      "flex-1 w-full uppercase tracking-widest text-xs font-bold rounded-full bg-primary hover:bg-[#8F1A2C] text-white hover:text-white justify-center gap-1.5 shadow-sm py-3 transition-all",
                   })}
                 >
                   <span>Fill Inquiry Form</span>
                   <Sparkles className="w-3.5 h-3.5" />
                 </Link>
                 <Link
-                  href={`https://wa.me/919888778082?text=${encodeURIComponent(`Hi Siya Ram Fabrics, I would like to request physical sample swatches for ${modalFabric.name} (${modalFabric.gsmRange}).`)}`}
+                  href={`https://wa.me/919888778082?text=${encodeURIComponent(
+                    `Hi Siya Ram Fabrics, I would like to request physical sample swatches for ${modalFabric.name} (${modalFabric.gsmRange}).`
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={buttonVariants({
                     size: "default",
                     variant: "outline",
-                    className: "flex-1 w-full uppercase tracking-widest text-xs font-bold rounded-full border-[#25D366]/50 bg-[#25D366]/5 text-[#25D366] hover:bg-[#25D366]/15 hover:border-[#25D366] hover:text-[#25D366] hover:shadow-[0_0_15px_rgba(37,211,102,0.25)] active:bg-[#25D366]/20 transition-all duration-300 justify-center gap-2",
+                    className:
+                      "flex-1 w-full uppercase tracking-widest text-xs font-bold rounded-full border-[#25D366]/50 bg-[#25D366]/5 text-[#25D366] hover:bg-[#25D366]/15 hover:border-[#25D366] hover:text-[#25D366] hover:shadow-[0_0_15px_rgba(37,211,102,0.25)] active:bg-[#25D366]/20 transition-all duration-300 justify-center gap-2 py-3",
                   })}
                 >
                   <MessageSquare className="w-4 h-4 text-[#25D366]" />

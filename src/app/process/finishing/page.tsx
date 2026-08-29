@@ -121,10 +121,11 @@ export default function FinishingProcessPage() {
           <FadeIn direction="up" delay={0.2}>
             <div className="mt-12 relative w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
               <Image
-                src="/images/process-finishing.jpg"
+                src="/images/Stenter.png"
                 alt="Stenter Frames and Felt Compactor Plant Floor"
                 fill
-                className="object-cover object-center"
+                unoptimized
+                className="object-cover object-[center_40%]"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
@@ -232,7 +233,8 @@ export default function FinishingProcessPage() {
                 className={buttonVariants({
                   variant: "outline",
                   size: "lg",
-                  className: "uppercase tracking-widest font-semibold text-white border-white/40 hover:bg-white hover:text-black rounded-full",
+                  className:
+                    "uppercase tracking-widest font-semibold text-white border border-white/40 bg-transparent hover:bg-white hover:text-black rounded-full transition-all",
                 })}
               >
                 Browse Fabrics
@@ -241,7 +243,8 @@ export default function FinishingProcessPage() {
                 href="/contact"
                 className={buttonVariants({
                   size: "lg",
-                  className: "uppercase tracking-widest font-semibold rounded-full bg-brand-bright text-black hover:bg-white",
+                  className:
+                    "uppercase tracking-widest font-semibold rounded-full bg-primary text-white hover:bg-[#8F1A2C] hover:text-white transition-all shadow-md",
                 })}
               >
                 Request Custom Sample

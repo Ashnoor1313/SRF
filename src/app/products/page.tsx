@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Layers, Waves } from "lucide-react";
+import { ArrowRight, Layers, Snowflake, Sun, Waves, Sparkles } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { FadeIn } from "@/components/fade-in";
+import { COLLECTIONS } from "@/data/fabrics";
 import { ProductsInteractiveCatalog } from "@/components/products-interactive-catalog";
 
 export const metadata: Metadata = {
-  title: "Products & Knitted Fabric Catalogue | Siya Ram Fabrics",
+  title: "Knitted Fabric Products & Seasonal Collections | Siya Ram Fabrics",
   description:
-    "Explore our range of premium knitted fabrics — single jersey, pique, rib, interlock, fleece, and fast fashion fabrics, manufactured in-house in Ludhiana.",
+    "Explore our complete Summer and Winter Knitted Fabric Portfolio — manufactured in-house in Ludhiana. Spun Matty, Fake Cotton, Sharina, Dull Plating, Russian Fleece, Airjet Fleece, Spun Fleece, RFD Cotton, 3 Thread & Cotton Fleece.",
 };
 
 const fastFashionPoints = [
@@ -37,7 +38,7 @@ export default function ProductsPage() {
         <div className="container relative z-10 mx-auto px-4 md:px-8 pb-20 md:pb-28">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 border border-brand-bright/50 text-brand-bright text-xs font-semibold tracking-[0.2em] uppercase px-5 py-2 mb-6 bg-black/40 rounded-full backdrop-blur-sm">
-              In-House Fabric Portfolio
+              In-House Fabric Portfolio (10 Products)
             </span>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-8xl font-bold uppercase tracking-tight text-white mb-6 leading-[0.9]">
               Fabrics That
@@ -47,7 +48,7 @@ export default function ProductsPage() {
               Forward
             </h1>
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-xl mb-10">
-              From timeless single jersey classics to fast-fashion structures — every fabric is knitted, dyed, and finished in-house in Ludhiana to deliver consistent quality at scale.
+              From lightweight summer knits (Spun Matty, Fake Cotton, Sharina, Dull Plating) to heavyweight winter fleeces (Russian, Airjet, 3-Thread, RFD Cotton) — engineered in Ludhiana for consistent quality at scale.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link
@@ -65,26 +66,24 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Catalogue */}
+      {/* Interactive Products Showcase & Seasonal Navigator */}
       <section className="py-20 md:py-[120px] bg-background">
         <div className="container mx-auto px-4 md:px-8">
           <FadeIn direction="up">
-            <div className="max-w-2xl mb-12">
-              <span className="text-primary font-semibold tracking-[0.15em] uppercase text-sm mb-4 block">
-                Knitted Catalogue
+            <div className="max-w-2xl mb-12 sm:mb-16">
+              <span className="text-primary font-semibold tracking-[0.15em] uppercase text-xs sm:text-sm mb-3 block">
+                Complete Fabric Portfolio
               </span>
-              <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase tracking-tight text-foreground mb-6">
-                A Fabric for Every Need
+              <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase tracking-tight text-foreground mb-4">
+                Our Knitted Fabrics
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Our circular knitting machines produce a wide range of structures
-                at high speeds with minimal variation — delivered at any GSM,
-                width, or color specification.
+                Browse our complete seasonal collections below, filter by category or GSM, and view detailed technical specifications for each fabric.
               </p>
             </div>
           </FadeIn>
 
-          {/* Interactive Catalog Filter & Cards */}
+          {/* Interactive Products Catalog */}
           <ProductsInteractiveCatalog />
         </div>
       </section>
@@ -113,7 +112,9 @@ export default function ProductsPage() {
                     className="flex items-start gap-3 bg-white/5 hover:bg-white/12 border border-white/10 hover:border-brand-bright/50 hover:shadow-[0_0_20px_rgba(229,72,77,0.25)] hover:-translate-y-1 transition-all duration-300 rounded-2xl p-5 cursor-pointer group"
                   >
                     <Waves className="w-5 h-5 text-brand-bright shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
-                    <span className="text-white/80 group-hover:text-white text-sm font-medium transition-colors duration-300">{point}</span>
+                    <span className="text-white/80 group-hover:text-white text-sm font-medium transition-colors duration-300">
+                      {point}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -150,7 +151,8 @@ export default function ProductsPage() {
               href="/contact"
               className={buttonVariants({
                 size: "lg",
-                className: "uppercase tracking-widest font-semibold bg-primary text-white hover:bg-primary/90 rounded-full px-8 py-6 w-full sm:w-auto shadow-lg",
+                className:
+                  "uppercase tracking-widest font-semibold bg-primary text-white hover:bg-[#8F1A2C] hover:text-white rounded-full px-8 py-6 w-full sm:w-auto shadow-lg transition-all",
               })}
             >
               Request a Custom Quote
@@ -160,7 +162,8 @@ export default function ProductsPage() {
               className={buttonVariants({
                 size: "lg",
                 variant: "outline",
-                className: "uppercase tracking-widest font-semibold border-foreground text-foreground rounded-full px-8 py-6 w-full sm:w-auto",
+                className:
+                  "uppercase tracking-widest font-semibold border-2 border-foreground text-foreground hover:bg-foreground/10 hover:text-foreground rounded-full px-8 py-6 w-full sm:w-auto transition-all",
               })}
             >
               Our Process <Layers className="w-4 h-4 ml-2" />

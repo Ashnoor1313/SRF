@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Factory, Gauge, PackageCheck, Droplets, Sparkles } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/fade-in";
+import { FacilityTourCarousel } from "@/components/facility-tour-carousel";
 
 export const metadata: Metadata = {
   title: "Infrastructure & Plant Capacity | Siya Ram Fabrics",
@@ -23,57 +24,6 @@ const capabilities = [
   { icon: Gauge, title: "Precision Processing", description: "In-house dyeing and finishing under precise process parameters to maintain consistent shade, GSM, and luxurious hand-feel." },
   { icon: PackageCheck, title: "Thorough Quality Inspection", description: "Multi-stage inspection at grey stage, post-processing, and prior to final roll packaging — every roll tagged and barcoded end to end." },
   { icon: Droplets, title: "In-House ETP Control", description: "Dedicated effluent treatment plant ensuring eco-friendly operations, responsible water management, and stringent environmental compliance." },
-];
-
-const galleryItems = [
-  {
-    title: "Circular Knitting Line",
-    subtitle: "High-speed multi-feeder machines for jersey, pique & fleece",
-    category: "Knitting Unit",
-    image: "/images/knitting_machine.png",
-  },
-  {
-    title: "Dyeing & Processing Plant",
-    subtitle: "Precise temperature & automated shade-matching vessels",
-    category: "Dyeing & Wet Processing",
-    image: "/images/factory_floor.png",
-  },
-  {
-    title: "Quality Inspection Floor",
-    subtitle: "4-point inspection system with barcode tracking & defect logging",
-    category: "Quality Assurance",
-    image: "/images/fabric_rolls.png",
-  },
-  {
-    title: "In-House ETP Plant",
-    subtitle: "Advanced effluent treatment ensuring zero liquid discharge",
-    category: "Sustainability",
-    image: "/images/factory_floor.png",
-  },
-  {
-    title: "Finishing & Stenter Range",
-    subtitle: "Continuous heat setting, width adjustment & soft compaction",
-    category: "Finishing Line",
-    image: "/images/knitting_machine.png",
-  },
-  {
-    title: "Fabric Roll Warehouse",
-    subtitle: "Organized inventory ready for prompt domestic & export dispatch",
-    category: "Storage & Logistics",
-    image: "/images/fabric_rolls.png",
-  },
-  {
-    title: "Yarn Storage & Conditioning",
-    subtitle: "Climate-conditioned storage preserving tensile strength",
-    category: "Raw Material Store",
-    image: "/images/factory_floor.png",
-  },
-  {
-    title: "Textile Testing & R&D Lab",
-    subtitle: "Testing GSM, shrinkage, colour fastness & pilling resistance",
-    category: "Testing & R&D Lab",
-    image: "/images/knitting_machine.png",
-  },
 ];
 
 export default function InfrastructurePage() {
@@ -201,7 +151,7 @@ export default function InfrastructurePage() {
                 purpose: "Continuous Multi-Track Greige Fabric Formation",
                 functions: "Positive yarn storage feeding, positive Lycra attachments, ceramic guide eyelets, and automated optical stop-motion detectors.",
                 speciality: "Handles fine single jersey (24G–34G) to heavyweight double jersey and 3-thread fleece with zero spirality and exact loop uniformity.",
-                image: "/images/knitting_machine.png",
+                image: "/images/SDW01497.JPG.jpeg",
                 stat: "15,000+ Kg/Day",
               },
               {
@@ -210,7 +160,7 @@ export default function InfrastructurePage() {
                 purpose: "Low-Liquor Gentle Tension Shade Infusion",
                 functions: "Microprocessor-controlled heating/cooling curves, automated chemical injection pumps, and variable nozzle pressure.",
                 speciality: "Operates at ultra-low 1:5 liquor ratio, reducing water/energy usage while guaranteeing Delta E < 0.8 shade accuracy.",
-                image: "/images/factory_floor.png",
+                image: "/images/IMG-20260825-WA0002.jpg",
                 stat: "Delta E < 0.8",
               },
               {
@@ -219,7 +169,7 @@ export default function InfrastructurePage() {
                 purpose: "Width Calibration, Heat Stabilization & Bow Correction",
                 functions: "Overfeed pin/clip chain, continuous moisture sensing, automated bow and skew weft straightening, and hot-air circulation.",
                 speciality: "Stabilizes elastane recovery memory, eliminates edge-curling, and locks in exact finished width specifications.",
-                image: "/images/knitting_machine.png",
+                image: "/images/Stenter.png",
                 stat: "Spirality < 2.0%",
               },
               {
@@ -228,7 +178,8 @@ export default function InfrastructurePage() {
                 purpose: "Mechanical Pre-Shrinkage & Luxury Handfeel",
                 functions: "Dual high-temperature chrome cylinders paired with thick Nomex felt blankets compressing knitted loops longitudinally.",
                 speciality: "Guarantees residual wash shrinkage under 3.0% while imparting a silky, smooth, and full-bodied drape.",
-                image: "/images/fabric_rolls.png",
+                image: "/images/tubular machine.jpeg",
+                imagePosition: "object-center",
                 stat: "Shrinkage < 3.0%",
               },
               {
@@ -237,7 +188,8 @@ export default function InfrastructurePage() {
                 purpose: "Plush Winter Fleece & Terry Texture Extraction",
                 functions: "Multi-roller counter-rotating wire cylinders extracting dense micro-pile, followed by high-speed rotary shearing blades.",
                 speciality: "Creates uniform, non-shedding, ultra-warm brushed fleece for winter hoodies, sweatpants, and luxury loungewear.",
-                image: "/images/knitting_machine.png",
+                image: "/images/shearing.jpeg",
+                imagePosition: "object-[center_45%]",
                 stat: "Zero-Shed Pile",
               },
               {
@@ -246,20 +198,21 @@ export default function InfrastructurePage() {
                 purpose: "100% Roll 4-Point Defect Detection & Barcode Tagging",
                 functions: "Variable-speed continuous roll unrolling under D65 daylight-calibrated high-CRI LED backlighting, with digital defect logging.",
                 speciality: "Ensures every roll leaves our factory with complete digital batch traceability, zero defect tolerance, and verified GSM.",
-                image: "/images/fabric_rolls.png",
+                image: "/images/SDW 01420.png",
                 stat: "100% Rolls Graded",
               },
             ].map((m, idx) => (
               <FadeIn key={m.name} direction="up" delay={idx * 0.1}>
                 <div className="bg-card border border-border rounded-3xl overflow-hidden shadow-md hover:shadow-xl hover:border-primary/50 transition-all duration-300 flex flex-col justify-between h-full group">
-                  <div className="relative h-48 w-full overflow-hidden bg-muted">
+                  <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-muted">
                     <Image
                       src={m.image}
                       alt={m.name}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      unoptimized
+                      className={`object-cover ${m.imagePosition || "object-[center_35%]"} group-hover:scale-105 transition-transform duration-500 brightness-105`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                     <div className="absolute top-4 left-4">
                       <span className="text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full bg-primary text-white shadow-sm">
                         {m.category}
@@ -300,74 +253,8 @@ export default function InfrastructurePage() {
         </div>
       </section>
 
-      {/* 8 Infrastructure Gallery Showcase Boxes */}
-      <section className="py-20 md:py-[120px] bg-background">
-        <div className="container mx-auto px-4 md:px-8">
-          <FadeIn direction="up">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
-              <div className="max-w-2xl">
-                <span className="text-primary font-semibold tracking-[0.15em] uppercase text-sm mb-3 block">
-                  Plant Tour & Visuals
-                </span>
-                <h2 className="font-heading text-3xl md:text-5xl font-bold uppercase tracking-tight text-foreground">
-                  Inside Our Facility
-                </h2>
-                <p className="text-muted-foreground text-base md:text-lg mt-4 leading-relaxed">
-                  A visual tour across our circular knitting halls, automated dyeing vessels, multi-stage inspection bays, and sustainable plant infrastructure.
-                </p>
-              </div>
-              <div className="hidden md:flex items-center gap-2">
-                <span className="text-xs uppercase tracking-widest text-muted-foreground font-semibold px-4 py-2 rounded-full border border-border bg-card">
-                  8 Facility Highlights
-                </span>
-              </div>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {galleryItems.map((item) => (
-              <StaggerItem
-                key={item.title}
-                className="group relative h-[320px] sm:h-[360px] rounded-3xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-[0_20px_50px_rgba(177,33,55,0.2)] hover:border-primary/60 hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col justify-end p-6"
-              >
-                {/* Background Image with Zoom Effect */}
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover object-center scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-
-                {/* Dark Gradient Overlay for High Contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20 group-hover:from-black/95 group-hover:via-black/40 group-hover:to-transparent transition-colors duration-500 z-10" />
-
-                {/* Top Category Badge & Interactive Sparkle Indicator */}
-                <div className="absolute top-5 inset-x-5 flex items-center justify-between z-20">
-                  <span className="text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full bg-black/60 text-brand-bright border border-brand-bright/30 backdrop-blur-md transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:shadow-[0_0_15px_rgba(177,33,55,0.4)]">
-                    {item.category}
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-75 transition-all duration-300">
-                    <Sparkles className="w-3.5 h-3.5 text-brand-bright" />
-                  </div>
-                </div>
-
-                {/* Bottom Content with Smooth Slide Up */}
-                <div className="relative z-20 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="font-heading text-lg sm:text-xl font-bold uppercase tracking-wide text-white group-hover:text-brand-bright transition-colors duration-300 mb-1.5 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/70 text-xs sm:text-sm leading-relaxed line-clamp-2 group-hover:text-white/90 transition-colors duration-300">
-                    {item.subtitle}
-                  </p>
-                </div>
-
-                {/* Accent Bottom Glow Border */}
-                <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-primary via-brand-bright to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30" />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
+      {/* Inside Our Facility Interactive Carousel Showcase */}
+      <FacilityTourCarousel />
 
       {/* CTA */}
       <section className="py-20 md:py-[100px] bg-secondary text-white">

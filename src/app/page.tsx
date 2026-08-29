@@ -32,17 +32,31 @@ const milestones = [
 export default function Home() {
   return (
     <div className="flex flex-col w-full">
-      {/* Hero Section */}
+      {/* Hero Section with Cinematic Background Video */}
       <section className="relative min-h-[88vh] sm:min-h-[92vh] w-full flex items-center overflow-hidden py-16 sm:py-20">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/factory_floor.png"
-            alt="Modern textile manufacturing at Siya Ram Fabrics"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/factory_floor.png"
+            className="w-full h-full object-cover object-center"
+          >
+            <source
+              src="/srf%20cinematic_with%20white%20logo%20and%20black%20background.mp4"
+              type="video/mp4"
+            />
+            {/* Fallback Image */}
+            <Image
+              src="/images/factory_floor.png"
+              alt="Modern textile manufacturing at Siya Ram Fabrics"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/55" />
         </div>
         <div className="container relative z-10 mx-auto px-4 sm:px-6 md:px-8 text-white">
           <div className="max-w-3xl">
@@ -390,10 +404,11 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <FadeIn direction="right" className="relative h-[320px] sm:h-[420px] md:h-[550px] w-full order-2 lg:order-1 rounded-3xl overflow-hidden shadow-2xl border border-white/10">
               <Image
-                src="/images/knitting_machine.png"
-                alt="Modern circular knitting machine"
+                src="/images/SDW01497.JPG.jpeg"
+                alt="High-speed circular knitting machine at Siya Ram Fabrics"
                 fill
-                className="object-cover"
+                unoptimized
+                className="object-cover object-center"
               />
             </FadeIn>
             <FadeIn direction="left" className="order-1 lg:order-2">
