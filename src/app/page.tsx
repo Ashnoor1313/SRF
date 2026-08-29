@@ -40,20 +40,13 @@ export default function Home() {
             loop
             muted
             playsInline
-            poster="/images/factory_floor.png"
+            preload="auto"
+            poster="/images/hero-video-poster.jpg"
             className="w-full h-full object-cover object-center"
           >
             <source
               src="/srf%20cinematic_with%20white%20logo%20and%20black%20background.mp4"
               type="video/mp4"
-            />
-            {/* Fallback Image */}
-            <Image
-              src="/images/factory_floor.png"
-              alt="Modern textile manufacturing at Siya Ram Fabrics"
-              fill
-              className="object-cover object-center"
-              priority
             />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/55" />
