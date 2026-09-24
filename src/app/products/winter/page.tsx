@@ -9,7 +9,7 @@ import { CollectionFabricGrid } from "@/components/collection-fabric-grid";
 export const metadata: Metadata = {
   title: "Winter Knitted Fabric Collection (6 Products) | Siya Ram Fabrics",
   description:
-    "Explore our Winter Knitted Fabric Collection — Russian Fleece, Airjet Fleece, Spun Fleece, RFD Fleece Cotton, 3 Thread Fleece, and 100% Cotton Fleece engineered for cold-weather apparel.",
+    "Explore our Winter Knitted Fabric Collection — Fake Cotton Russian Fleece, Airjet Fleece, Spun Fleece, RFD Fleece Cotton, 3 Thread Fleece, and 100% Cotton Fleece engineered for cold-weather apparel.",
 };
 
 export default function WinterCollectionPage() {
@@ -53,7 +53,7 @@ export default function WinterCollectionPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-white/85 leading-relaxed max-w-2xl">
-              Heavyweight, plush, and thermal fabrics engineered for cold-weather apparel — ultra-thick Russian Fleece, zero-pill Airjet Fleece, Spun Fleece, RFD Cotton Fleece, 3 Thread Fleece, and 100% Combed Cotton Fleece.
+              Heavyweight, plush, and thermal fabrics engineered for cold-weather apparel — ultra-thick Fake Cotton Russian Fleece, zero-pill Airjet Fleece, Spun Fleece, RFD Cotton Fleece, 3 Thread Fleece, and 100% Combed Cotton Fleece.
             </p>
           </div>
         </div>
@@ -94,10 +94,10 @@ export default function WinterCollectionPage() {
                   Looking for Summerwear?
                 </span>
                 <h3 className="font-heading text-xl sm:text-2xl font-bold uppercase text-foreground">
-                  Explore Summer Collection (4 Products)
+                  Explore Summer Collection (6 Products)
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                  Lightweight 140–260 GSM Spun Matty, Fake Cotton, Sharina Fabric & Dull Plating.
+                  Lightweight 140–260 GSM Spun Matty, Fake Cotton, Sharina, Full Dull SAP, Fake Cotton Sinker & SAP Matty.
                 </p>
               </div>
             </div>

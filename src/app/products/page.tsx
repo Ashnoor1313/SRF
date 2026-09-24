@@ -10,7 +10,7 @@ import { ProductsInteractiveCatalog } from "@/components/products-interactive-ca
 export const metadata: Metadata = {
   title: "Knitted Fabric Products & Seasonal Collections | Siya Ram Fabrics",
   description:
-    "Explore our complete Summer and Winter Knitted Fabric Portfolio — manufactured in-house in Ludhiana. Spun Matty, Fake Cotton, Sharina, Dull Plating, Russian Fleece, Airjet Fleece, Spun Fleece, RFD Cotton, 3 Thread & Cotton Fleece.",
+    "Explore our complete Summer and Winter Knitted Fabric Portfolio — manufactured in-house in Ludhiana. Spun Matty, Fake Cotton, Sharina, Full Dull SAP, Fake Cotton Sinker, SAP Matty, Fake Cotton Russian Fleece, Airjet Fleece, Spun Fleece, RFD Cotton, 3 Thread & Cotton Fleece.",
 };
 
 const fastFashionPoints = [
@@ -38,7 +38,7 @@ export default function ProductsPage() {
         <div className="container relative z-10 mx-auto px-4 md:px-8 pb-20 md:pb-28">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 border border-brand-bright/50 text-brand-bright text-xs font-semibold tracking-[0.2em] uppercase px-5 py-2 mb-6 bg-black/40 rounded-full backdrop-blur-sm">
-              In-House Fabric Portfolio (10 Products)
+              In-House Fabric Portfolio (12 Products)
             </span>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-8xl font-bold uppercase tracking-tight text-white mb-6 leading-[0.9]">
               Fabrics That
@@ -48,7 +48,7 @@ export default function ProductsPage() {
               Forward
             </h1>
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-xl mb-10">
-              From lightweight summer knits (Spun Matty, Fake Cotton, Sharina, Dull Plating) to heavyweight winter fleeces (Russian, Airjet, 3-Thread, RFD Cotton) — engineered in Ludhiana for consistent quality at scale.
+              From lightweight summer knits (Spun Matty, Fake Cotton, Sharina, Full Dull SAP, Fake Cotton Sinker, SAP Matty) to heavyweight winter fleeces (Russian, Airjet, 3-Thread, RFD Cotton) — engineered in Ludhiana for consistent quality at scale.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link

@@ -8,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function Footer() {
   const pathname = usePathname();
-  if (pathname === "/coming-soon") return null;
+  if (pathname === "/coming-soon" || pathname.startsWith("/sr-processors")) return null;
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 md:px-8 py-20 md:py-[100px]">

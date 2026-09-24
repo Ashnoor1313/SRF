@@ -41,7 +41,7 @@ export default function WhatsAppButton() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
 
-  if (pathname === "/coming-soon") return null;
+  if (pathname === "/coming-soon" || pathname.startsWith("/sr-processors")) return null;
 
   return (
     <div ref={wrapRef} className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-4">

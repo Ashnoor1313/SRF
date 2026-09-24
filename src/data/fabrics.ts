@@ -16,20 +16,20 @@ export const COLLECTIONS: CollectionInfo[] = [
     id: "summer",
     title: "Summer Collection",
     subtitle: "Lightweight, breathable & smooth knitted structures for warm seasons",
-    highlights: "140 – 260 GSM • Spun Matty, Fake Cotton, Sharina & Dull Plating",
+    highlights: "140 – 260 GSM • Spun Matty, Fake Cotton, Sharina, Full Dull SAP, Fake Cotton Sinker & SAP Matty",
     description:
       "Lightweight, breathable, and exceptionally smooth knitted fabrics engineered for polo shirts, casual t-shirts, tops, and fast fashion retail collections.",
     image: "/images/summer-collection-collage.jpg",
     badge: "Summer Knits",
     seasonIcon: "sun",
-    fabricCount: 4,
+    fabricCount: 6,
     slug: "/products/summer",
   },
   {
     id: "winter",
     title: "Winter Collection",
     subtitle: "Heavyweight, plush & high-insulation fleece and thermal winter knits",
-    highlights: "260 – 450 GSM • Russian, Airjet, 3-Thread & Cotton Fleece",
+    highlights: "260 – 450 GSM • Fake Cotton Russian, Airjet, 3-Thread & Cotton Fleece",
     description:
       "Plush brushed inner lining and dense knit structures providing maximum thermal insulation, shape retention, and luxury handfeel for hoodies, sweatshirts, and joggers.",
     image: "/images/winter-collection-fleece.jpg",
@@ -56,7 +56,7 @@ export interface FabricItem {
 }
 
 export const FABRICS: FabricItem[] = [
-  // ================= SUMMER COLLECTION (4 PRODUCTS) =================
+  // ================= SUMMER COLLECTION (6 PRODUCTS) =================
   {
     id: "spun-matty",
     name: "Spun Matty",
@@ -116,7 +116,7 @@ export const FABRICS: FabricItem[] = [
   },
   {
     id: "dull-plating",
-    name: "Dull Plating",
+    name: "Full Dull SAP",
     category: "textured",
     collections: ["summer"],
     description:
@@ -133,11 +133,49 @@ export const FABRICS: FabricItem[] = [
     tag: "Premium Matte",
     image: "/images/dull plating.JPG",
   },
+  {
+    id: "fake-cotton-sinker",
+    name: "Fake Cotton Sinker",
+    category: "basics",
+    collections: ["summer"],
+    description:
+      "Smooth and lightweight sinker single jersey knit featuring a cotton-soft handfeel. Engineered for exceptional breathability, superior drape, and outstanding color clarity for summer tees.",
+    gsmRange: "150 – 210 GSM",
+    composition: "Cotton-Touch Spun Micro / Poly-Cotton Single Jersey (Sinker Knit)",
+    availableColors: ["Optic White", "Jet Black", "Navy Blue", "Melange Grey", "Pastel Olive", "Custom Mill Dips"],
+    features: [
+      "Smooth Sinker Single Jersey Knit Construction",
+      "Natural Cotton Handfeel with Synthetic Durability",
+      "Highly Breathable & Quick-Drying Summer Fabric",
+    ],
+    bestFor: "Round Neck T-Shirts, Everyday Casualwear, Graphic Printed Tees, Modern Streetwear",
+    tag: "Summer Essential",
+    image: "/images/products/fake-cotton-sinker.jpg",
+  },
+  {
+    id: "sap-matty",
+    name: "SAP Matty",
+    category: "textured",
+    collections: ["summer"],
+    description:
+      "Premium honeycomb pique fabric knitted with advanced SAP yarns for superior shape retention, anti-wrinkle performance, and vibrant color fastness. Designed for structured polo shirts and corporate workwear.",
+    gsmRange: "200 – 250 GSM",
+    composition: "High-Performance SAP Yarn Honeycomb Pique Knit",
+    availableColors: ["Navy Blue", "Royal Blue", "Crimson Red", "Jet Black", "Charcoal Grey", "Custom Corporate Dips"],
+    features: [
+      "Crisp & Resilient SAP Honeycomb Pique Weave",
+      "Exceptional Shape Retention with Non-Curling Collar Support",
+      "Fade-Resistant & Easy-Care Wash Durability",
+    ],
+    bestFor: "Corporate Polo Shirts, Sportswear Polos, Institutional Uniforms, Collared Tees",
+    tag: "Polo Classic",
+    image: "/images/products/sap-matty.jpg",
+  },
 
   // ================= WINTER COLLECTION (6 PRODUCTS) =================
   {
     id: "russian-fleece",
-    name: "Russian Fleece",
+    name: "Fake Cotton Russian Fleece",
     category: "heavyweight",
     collections: ["winter"],
     description:

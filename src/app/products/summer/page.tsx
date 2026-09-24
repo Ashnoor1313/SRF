@@ -7,9 +7,9 @@ import { FadeIn } from "@/components/fade-in";
 import { CollectionFabricGrid } from "@/components/collection-fabric-grid";
 
 export const metadata: Metadata = {
-  title: "Summer Knitted Fabric Collection (4 Products) | Siya Ram Fabrics",
+  title: "Summer Knitted Fabric Collection (6 Products) | Siya Ram Fabrics",
   description:
-    "Explore our Summer Knitted Fabric Collection — Spun Matty, Fake Cotton, Sharina Fabric, and Dull Plating engineered for breathable summerwear, polos, and casuals.",
+    "Explore our Summer Knitted Fabric Collection — Spun Matty, Fake Cotton, Sharina Fabric, Full Dull SAP, Fake Cotton Sinker, and SAP Matty engineered for breathable summerwear, polos, and casuals.",
 };
 
 export default function SummerCollectionPage() {
@@ -43,7 +43,7 @@ export default function SummerCollectionPage() {
             {/* Summer Collection Tag */}
             <div className="inline-flex items-center gap-2 border border-amber-500/50 bg-amber-500/15 text-amber-400 text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full backdrop-blur-md">
               <Sun className="w-3.5 h-3.5 text-amber-400" />
-              Summer Knits • 140 – 260 GSM (4 Products)
+              Summer Knits • 140 – 260 GSM (6 Products)
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tight text-white leading-[0.95]">
@@ -53,7 +53,7 @@ export default function SummerCollectionPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-white/85 leading-relaxed max-w-2xl">
-              Engineered for warm-weather apparel — breathable Spun Matty, soft-touch Fake Cotton, luxurious drapey Sharina Fabric, and clean matte Dull Plating knits.
+              Engineered for warm-weather apparel — breathable Spun Matty, soft-touch Fake Cotton, luxurious drapey Sharina Fabric, clean matte Full Dull SAP, lightweight Fake Cotton Sinker, and structured SAP Matty.
             </p>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function SummerCollectionPage() {
                   Explore Winter Collection (6 Products)
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                  Heavyweight 260–450 GSM Russian fleece, Airjet fleece, 3-thread fleece, Spun fleece, RFD cotton & cotton fleece.
+                  Heavyweight 260–450 GSM Fake Cotton Russian fleece, Airjet fleece, 3-thread fleece, Spun fleece, RFD cotton & cotton fleece.
                 </p>
               </div>
             </div>

@@ -44,7 +44,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (pathname === "/coming-soon") return null;
+  if (pathname === "/coming-soon" || pathname.startsWith("/sr-processors")) return null;
 
   const isProcessActive = pathname.startsWith("/process") || pathname.startsWith("/manufacturing");
 
