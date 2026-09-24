@@ -129,7 +129,16 @@ export function CollectionFabricGrid({ collection }: CollectionFabricGridProps) 
         <div className="w-full md:w-auto overflow-x-auto no-scrollbar py-1">
           <div className="flex items-center gap-1.5 sm:gap-2 bg-muted p-1.5 sm:p-2 rounded-2xl border border-border w-max max-w-full">
             {[
-              { id: "all", label: `All ${collection === "summer" ? "Summer (4)" : collection === "winter" ? "Winter (6)" : "Fabrics"}` },
+              {
+                id: "all",
+                label: `All ${
+                  collection === "summer"
+                    ? `Summer (${FABRICS.filter((f) => f.collections.includes("summer")).length})`
+                    : collection === "winter"
+                    ? `Winter (${FABRICS.filter((f) => f.collections.includes("winter")).length})`
+                    : `Fabrics (${FABRICS.length})`
+                }`,
+              },
               { id: "textured", label: "Matty & Textured" },
               { id: "heavyweight", label: "Heavy Fleece & 3-Thread" },
               { id: "basics", label: "Cotton & Basics" },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -105,6 +105,14 @@ export function ProductsInteractiveCatalog() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [modalFabric, setModalFabric] = useState<FabricItem | null>(null);
   const productsViewRef = useRef<HTMLDivElement>(null);
+  const summerCount = useMemo(
+    () => FABRICS.filter((f) => f.collections.includes("summer")).length,
+    []
+  );
+  const winterCount = useMemo(
+    () => FABRICS.filter((f) => f.collections.includes("winter")).length,
+    []
+  );
 
   const openCollection = (col: "summer" | "winter") => {
     setActiveCollection(col);
@@ -317,7 +325,7 @@ export function ProductsInteractiveCatalog() {
               )}
             >
               <Sun className="w-3 h-3" />
-              Summer (4)
+              Summer ({summerCount})
             </button>
             <button
               onClick={() => setActiveCollection("winter")}
@@ -329,7 +337,7 @@ export function ProductsInteractiveCatalog() {
               )}
             >
               <Snowflake className="w-3 h-3" />
-              Winter (6)
+              Winter ({winterCount})
             </button>
           </div>
         </div>
